@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>14</x>
+      <y>119</y>
+      <w>308</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>BoardGame
+--
+#ROW
+#COLUMN
+-pieces : List&lt;PieceState&gt;
+-points : Point[][]
+--
++BoardGame():BoardGame
++placePiece(piece:Piece,x:Integer,y:Integer):void
++movePiece(x:Integer,y:Integer,x_new:Integer,y_new:Integer):void
++removePiece(x:Integer,y:Integer):void
++getPieces(): list&lt;PieceState&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>441</x>
+      <y>539</y>
+      <w>147</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>Monkey
+--
+
+--
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>742</x>
+      <y>161</y>
+      <w>147</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt;
+GameState
+--
+InGame
+EndGame
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>756</x>
+      <y>378</y>
+      <w>126</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>/Piece/
+--
+- type : String
+- size : Integer
+- pieceState : PieceState
+
+--
++getType():String
++getSize():Integer
++isDead():Boolean
++valideMoves(): Point[]
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>749</x>
+      <y>539</y>
+      <w>147</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>Dragon
+--
+
+--
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>595</x>
+      <y>539</y>
+      <w>147</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>Lion
+--
+
+--
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>672</x>
+      <y>483</y>
+      <w>140</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>180.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>546</x>
+      <y>483</y>
+      <w>245</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>330.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>812</x>
+      <y>483</y>
+      <w>21</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>924</x>
+      <y>98</y>
+      <w>266</w>
+      <h>287</h>
+    </coordinates>
+    <panel_attributes>View
+--
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>924</x>
+      <y>392</y>
+      <w>266</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>Controller
+--
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>966</x>
+      <y>434</y>
+      <w>140</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>GameController
+--
+- game:Game
+--
++ createPlayer(name:String,
++ createTheGame():void
++ startTheGame():void
++ annouceWinner():void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>973</x>
+      <y>147</y>
+      <w>70</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>GameGUI</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>91</x>
+      <y>294</y>
+      <w>147</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>Point
+--
+- row : Integer
+- column : Integer
+--
++ Point(x:Integer,y:Integer)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>91</x>
+      <y>539</y>
+      <w>315</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>MoveValidator
+--
+
+
+--
++ moveValid(piece : Piece, point_init : Point, point_to : Point):void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>742</x>
+      <y>266</y>
+      <w>140</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>Player
+--
+- name : String
+- color : Integer
+
+--
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>679</x>
+      <y>182</y>
+      <w>77</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>574</x>
+      <y>385</y>
+      <w>147</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt;
+PieceState
+--
+Alive
+Dead
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>714</x>
+      <y>406</y>
+      <w>56</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>364</x>
+      <y>133</y>
+      <w>322</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>Game
+--
+- player1,player2 : Player
+- board_game : BoardGame
+- gameState : GameState
+--
++ Game(boardGame:board_game, player1:Player,player2:Player):Game
++ getGameState(): GameState
++ setupBoard():void
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>0</x>
+      <y>91</y>
+      <w>910</w>
+      <h>581</h>
+    </coordinates>
+    <panel_attributes>Model
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
