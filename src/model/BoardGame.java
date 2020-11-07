@@ -139,9 +139,12 @@ public class BoardGame {
 		point1.setPiece(null);
 	}
 
-	public void placePiece(Piece piece, Point point) {
+	public Boolean placePiece(Piece piece, Point point) {
+		
+		// CHECK IF MOVE OK
 		removePiece(piece.getPosition());
 		this.getPoints()[point.getN_row()][point.getN_column()].setPiece(piece);
+		return true;
 	}
 
 	public void removePiece(Point point) {
