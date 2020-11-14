@@ -15,6 +15,8 @@ public class GameController {
 	public void createTheGame(Player player1,Player player2) {
 		
 		this.game = new Game(player1,player2);
+		this.player1 = player1;
+		this.player2 = player2;
 		
 		
 	}
@@ -42,14 +44,20 @@ public class GameController {
 	//public void Player2Move(Piece piece,Point to_point) {}
 	
 	
-	public void Player1Move(int x1,int y1,int x2,int y2) {
-		System.out.println("Move : " + game.PlayerPlays(player1, x1, y1, x2, y2).toString());
-	
+	public Boolean Player1Move(int x1,int y1,int x2,int y2) {
+		
+		Boolean ret = game.PlayerPlays(player1, x1, y1, x2, y2);
+		
+		//System.out.println("Move : " + ret );
+		return ret;
 	}
 	
-	public void Player2Move(int x1,int y1,int x2,int y2) {
+	public Boolean Player2Move(int x1,int y1,int x2,int y2) {
 
-		System.out.println("Move : " + game.PlayerPlays(player2, x1, y1, x2, y2).toString());
+		Boolean ret = game.PlayerPlays(player2, x1, y1, x2, y2);
+		
+		System.out.println("Move : " + ret );
+		return ret;
 		}
 	
 	

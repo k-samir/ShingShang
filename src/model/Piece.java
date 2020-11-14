@@ -21,5 +21,7 @@ public interface Piece {
 	public Point getPosition();
 
 	public void setPosition(Point position);
+	
+	public String getColor();
 
 }

@@ -28,6 +28,10 @@ public class Point {
 	public Boolean isUsed() {
 		return (piece != null);
 	}
+	
+	public Boolean isUsable() {
+		return(point_type != PointType.NOTHING);
+	}
 
 	public Piece getPiece() {
 		return piece;

@@ -84,5 +84,9 @@ public class Lion implements Piece {
 	public Point[] valideMoves() {
 		return null;
 	}
+	
+
+	
+
 
 }
