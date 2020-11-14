@@ -39,6 +39,7 @@ public class Point {
 
 	public void setPiece(Piece piece) {
 		this.piece = piece;
+
 	}
 
 	public Integer getN_row() {
@@ -51,6 +52,13 @@ public class Point {
 
 	public PointType getPoint_type() {
 		return point_type;
+	}
+	
+	public Boolean equals(Point p) {
+		
+		return(p.getN_row() == n_row && p.getN_column() == n_column);
+			
+		
 	}
 //
 //	public void setPoint_type(String point_type) {

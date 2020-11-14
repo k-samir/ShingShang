@@ -100,10 +100,10 @@ public class GameController {
 				int to_y = sc.nextInt(); 
 				
 				if(this.getCurrentPlayerTurn() == 1) {
-					move = this.Player1Move(from_x,from_y,to_x,to_y);
+					move = Player1Move(from_x,from_y,to_x,to_y);
 				}
 				else{
-					move = this.Player2Move(from_x,from_y,to_x,to_y);
+					move = Player2Move(from_x,from_y,to_x,to_y);
 				}
 				
 			}

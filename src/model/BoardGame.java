@@ -177,13 +177,16 @@ public class BoardGame {
 		Boolean ret = false;
 		
 		// CHECK IF MOVE OK
-		if(moveValidator.moveValid(piece, point)) {
-		removePiece(piece.getPosition());
-		this.getPoints()[point.getN_row()][point.getN_column()].setPiece(piece);
-		ret = true;
+		if(moveValidator.moveValid(piece, point,getPoints())) {
+			removePiece(piece.getPosition());
+			piece.setPosition(point);
+			this.getPoints()[point.getN_row()][point.getN_column()].setPiece(piece);
+			
+			ret = true;
 		}
 		else {
 			ret = false;
+			System.out.println("The Move is not allowed, try again");
 		}
 		
 		return ret;
