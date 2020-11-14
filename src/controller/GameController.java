@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.Scanner;
+
 import model.Game;
 import model.GameState;
 import model.Piece;
@@ -25,6 +27,9 @@ public class GameController {
 		game.setupBoard();
 		//YOU CAN CHANGE THE FIRST PLAYER TO START
 		currentPlayerTurn = 1;
+		
+		System.out.println("GAME STARTED ...");
+		displayBoard();
 		
 	}
 	public int getCurrentPlayerTurn() {
@@ -75,6 +80,41 @@ public class GameController {
 	public void displayBoard() {
 		game.displayBoardGame();
 		System.out.println("");
+	}
+	
+	public void nextTurn(Scanner sc) {
+		Boolean move = false;
+		System.out.println("\n ---- Player "+ this.getCurrentPlayerTurn() +  "'s turn : ---- ");
+		while(!move) {
+			
+			System.out.println("Choose option : 1 playe move , 2 pass turn, 3 see all possible move for a piece");
+			System.out.println("Enter Your choice : ");
+			int action = sc.nextInt(); 
+			// MOVING
+			if(action == 1) {
+				System.out.println("From Which Point ? (input must be like (x y) )");
+				int from_x = sc.nextInt(); 
+				int from_y = sc.nextInt(); 
+				System.out.println("To you which Point ? (input must be like (x y) )");
+				int to_x = sc.nextInt(); 
+				int to_y = sc.nextInt(); 
+				
+				if(this.getCurrentPlayerTurn() == 1) {
+					move = this.Player1Move(from_x,from_y,to_x,to_y);
+				}
+				else{
+					move = this.Player2Move(from_x,from_y,to_x,to_y);
+				}
+				
+			}
+			// PASSING 
+			else if(action == 2) {
+				move = true;
+			}
+		}
+		
+		this.switchPlayer();	
+		this.displayBoard();
 	}
 	
 	
