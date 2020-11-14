@@ -12,6 +12,8 @@ public class BoardGame {
 
 	private String colorJ1;
 	private String colorJ2;
+	
+	private MoveValidator moveValidator;
 
 	public BoardGame(String colorJ1, String colorJ2) {
 		//super();
@@ -24,6 +26,8 @@ public class BoardGame {
 
 		pieces.add(new PieceSet(colorJ1));
 		pieces.add(new PieceSet(colorJ2));
+		
+		moveValidator = new MoveValidator();
 
 		
 		// MODIFIEER POUR APPEL DANS GAME
@@ -170,10 +174,20 @@ public class BoardGame {
 
 	public Boolean placePiece(Piece piece, Point point) {
 		
+		Boolean ret = false;
+		
 		// CHECK IF MOVE OK
+		if(moveValidator.moveValid(piece, point)) {
 		removePiece(piece.getPosition());
 		this.getPoints()[point.getN_row()][point.getN_column()].setPiece(piece);
-		return true;
+		ret = true;
+		}
+		else {
+			ret = false;
+		}
+		
+		return ret;
+		
 	}
 
 	public void removePiece(Point point) {
