@@ -8,7 +8,7 @@ public class Point {
 	private Piece piece;
 
 	public Point(Integer x, Integer y, String point_type) {
-		super();
+		//super();
 		this.n_row = x;
 		this.n_column = y;
 

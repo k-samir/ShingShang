@@ -14,58 +14,87 @@ public class BoardGame {
 	private String colorJ2;
 
 	public BoardGame(String colorJ1, String colorJ2) {
-		super();
+		//super();
+		
 		this.colorJ1 = colorJ1;
 		this.colorJ2 = colorJ2;
 
 		pieces = new ArrayList<PieceSet>();
-		points = new Point[ROW][COLUMN];
+		points = new Point[10][10];
 
 		pieces.add(new PieceSet(colorJ1));
 		pieces.add(new PieceSet(colorJ2));
 
+		
 		// MODIFIEER POUR APPEL DANS GAME
-		init();
+		//this.init();
 
 	}
 
 	public void init() {
+		
+		System.out.println("INIT...");
 
-		for (int i = 0; i < this.ROW;) {
-			for (int j = 0; j < this.COLUMN;) {
-				if ((i != 4 && j != 1) && (i != 5 && j != 1) && (i != 4 && j != 8) && (i != 5 && j != 8)) {
-					this.getPoints()[i][j] = new Point(i, j, "Standard");
-				} else {
+		for (int i = 0; i < 10;i++) {
+			for (int j = 0; j < 10;j++) {
+				
+				if(j%10 == 0) {
+					System.out.println("\n");
+				}
+				
+			
+				if((i == 1 &&  ( j==4 || j==5) || (i == 8 &&  ( j==4 || j==5)))){
 					this.getPoints()[i][j] = new Point(i, j, "Portal");
 				}
+				
+				else if (j==0 || j==9){
+					this.getPoints()[i][j] = new Point(i, j, "Nothing");
+				}
+				else {
+					this.getPoints()[i][j] = new Point(i, j, "Standard");
+					
+				}
+				
+		
+				
 			}
 		}
-
-		this.addDragon1(1, 0);
-		this.addDragon1(8, 0);
-		this.addLion1(2, 0);
+		
+		// ADDING POINT O,4 -  0,5 - 4,9 -- 5,9
+		this.getPoints()[4][0] = new Point(4, 0, "Standard");
+		this.getPoints()[5][0] = new Point(5, 0, "Standard");
+		
+		this.getPoints()[4][9] = new Point(4, 9, "Standard");
+		this.getPoints()[5][9] = new Point(5, 9, "Standard");
+		
+		
+		this.addDragon1(0, 1);
+		this.addDragon1(0, 8);
+		this.addLion1(0, 2);
 		this.addLion1(1, 1);
-		this.addLion1(8, 1);
-		this.addLion1(7, 0);
-		this.addMonkey1(3, 0);
-		this.addMonkey1(6, 0);
-		this.addMonkey1(2, 1);
-		this.addMonkey1(7, 1);
+		this.addLion1(1, 8);
+		this.addLion1(0, 7);
+		this.addMonkey1(0, 3);
+		this.addMonkey1(0, 6);
 		this.addMonkey1(1, 2);
-		this.addMonkey1(8, 2);
+		this.addMonkey1(1, 7);
+		this.addMonkey1(2, 1);
+		this.addMonkey1(2, 8);
 
-		this.addDragon2(1, 9);
-		this.addDragon2(8, 9);
-		this.addLion2(1, 8);
-		this.addLion2(2, 9);
-		this.addLion2(7, 9);
+		this.addDragon2(9, 1);
+		this.addDragon2(9, 8);
+		this.addLion2(8, 1);
+		this.addLion2(9, 2);
+		this.addLion2(9, 7);
 		this.addLion2(8, 8);
-		this.addMonkey2(1, 7);
-		this.addMonkey2(2, 8);
-		this.addMonkey2(3, 9);
-		this.addMonkey2(6, 9);
-		this.addMonkey2(7, 8);
+		this.addMonkey2(7, 1);
+		this.addMonkey2(8, 2);
+		this.addMonkey2(9, 3);
+		this.addMonkey2(9, 6);
 		this.addMonkey2(8, 7);
+		this.addMonkey2(7, 8);
+		
+		
 
 	}
 
@@ -150,5 +179,6 @@ public class BoardGame {
 	public void removePiece(Point point) {
 		point.setPiece(null);
 	}
+	
 
 }

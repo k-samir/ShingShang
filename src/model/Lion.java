@@ -18,7 +18,7 @@ public class Lion implements Piece {
 	}
 
 	public Lion(Point position, String color) {
-		super();
+		//super();
 		this.type = "Lion";
 		this.size = 2;
 		this.position = position;

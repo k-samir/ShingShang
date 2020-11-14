@@ -7,7 +7,8 @@ public class PieceSet {
 	private String color;
 
 	public PieceSet(String color) {
-		super();
+		//super();
+		pieces = new ArrayList<Piece>();
 		this.color = color;
 
 	}

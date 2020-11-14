@@ -6,7 +6,7 @@ public class Player {
 	private String color;
 	
 	public Player(String name, String color) {
-		super();
+		//super();
 		this.name = name;
 		this.color = color;
 	}

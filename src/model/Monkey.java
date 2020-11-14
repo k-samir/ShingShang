@@ -18,7 +18,7 @@ public class Monkey implements Piece {
 	}
 
 	public Monkey(Point position, String color) {
-		super();
+		//super();
 		this.type = "Monkey";
 		this.size = 1;
 		this.position = position;
