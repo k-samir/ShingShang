@@ -167,20 +167,33 @@ public class BoardGame {
 		this.points = points;
 	}
 
-	public void movePiece(Point point1, Point point2) {
-		this.getPoints()[point2.getN_row()][point2.getN_column()].setPiece(point1.getPiece());
-		point1.setPiece(null);
+	public void movePiece(Piece piece, Point to_point) {
+		removePiece(piece.getPosition());
+		piece.setPosition(to_point);
+		this.getPoints()[to_point.getN_row()][to_point.getN_column()].setPiece(piece);
+	}
+	
+	public void eatPiece(Piece piece, Point point) {
+		
 	}
 
 	public Boolean placePiece(Piece piece, Point point) {
 		
 		Boolean ret = false;
+		Tuple<Boolean,String> moveData = moveValidator.moveValid(piece, point,getPoints());
 		
 		// CHECK IF MOVE OK
-		if(moveValidator.moveValid(piece, point,getPoints())) {
-			removePiece(piece.getPosition());
-			piece.setPosition(point);
-			this.getPoints()[point.getN_row()][point.getN_column()].setPiece(piece);
+		if(moveData.getFirst()) {
+			
+			System.out.println(moveData.getSecond());
+			if(moveData.getSecond() == "Jump") {
+				movePiece(piece,point);
+			}
+			else {
+				movePiece(piece,point);
+			}
+			
+			
 			
 			ret = true;
 		}
