@@ -75,23 +75,26 @@ public class Game {
 			Tuple<Boolean, String> game_over = this.board_game.onPortalCheck();
 			Tuple<Boolean, String> game_over2 = this.board_game.noDragonCheck();
 			
+			System.out.println("PORTAL CHECK FIRST:" + game_over.getFirst() + " , CHECK SECOND:" + game_over.getSecond());
+			System.out.println("DRAGON CHECK FIRST:" + game_over2.getFirst() + " , CHECK SECOND:" + game_over2.getSecond());
+			
 			if(game_over.getFirst()) {
 				System.out.println("entrer1");
 				this.setGameState(gameState.ENDGAME);
 				if(game_over.getSecond() == "1") {
 					this.setWinner(this.player1);
 				}
-				else {
+				else if(game_over.getSecond() == "2"){
 					this.setWinner(this.player2);
 				}
 			}
 			if(game_over2.getFirst()) {
 				System.out.println("entrer2");
 				this.setGameState(gameState.ENDGAME);
-				if(game_over.getSecond() == "2") {
+				if(game_over2.getSecond() == "2") {
 					this.setWinner(this.player2);
 				}
-				else {
+				else if(game_over2.getSecond() == "1"){
 					this.setWinner(this.player1);
 				}
 			}

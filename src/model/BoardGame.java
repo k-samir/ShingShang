@@ -72,8 +72,8 @@ public class BoardGame {
 		this.getPoints()[4][9] = new Point(4, 9, "Standard");
 		this.getPoints()[5][9] = new Point(5, 9, "Standard");
 
-		this.addDragon1(0, 1);
-		this.addDragon1(0, 8);
+	//	this.addDragon1(0, 1);
+	//	this.addDragon1(0, 8);
 		this.addLion1(0, 2);
 		this.addLion1(1, 1);
 		this.addLion1(1, 8);
@@ -85,8 +85,8 @@ public class BoardGame {
 		this.addMonkey1(2, 1);
 		this.addMonkey1(2, 8);
 
-		this.addDragon2(9, 1);
-		this.addDragon2(9, 8);
+	//	this.addDragon2(9, 1);
+	//	this.addDragon2(9, 8);
 		this.addLion2(8, 1);
 		this.addLion2(9, 2);
 		this.addLion2(9, 7);
@@ -99,11 +99,11 @@ public class BoardGame {
 		this.addMonkey2(7, 8);
 		
 		//TESTING PIECES
-		this.addDragon1(6, 4);
-		this.addMonkey1(7, 4);
+		this.addDragon1(4, 3);
+	//	this.addMonkey1(7, 4);
 		
-		this.addDragon2(3, 6);
-		this.addMonkey2(4, 6);
+		this.addDragon2(4, 4);
+	//	this.addMonkey2(4, 6);
 		
 
 	}
@@ -184,12 +184,12 @@ public class BoardGame {
 	}
 
 	public void eatPiece(Piece piece, Point point) {
+		
 		System.out.println(piece.getType() +" du joueur " + piece.getColor() + " saute par dessus : " + point.getPiece().getType() 
 				+ " du joueur " + point.getPiece().getColor() + " et l'attrape.");
 	
 			point.getPiece().killPiece();
 			removePiece(point);
-		
 		
 	}
 
@@ -210,11 +210,11 @@ public class BoardGame {
 			// Reset the current ShingShangPiece
 			setShingShangPiece(null);
 			
-			System.out.println(moveData.getSecond());
-			if (moveData.getSecond() == "EnnemyJump") {
+						if (moveData.getSecond() == "EnnemyJump") {
 				System.out.println("SHING-SHANG");
 				this.shingShangSeq = true;
 				this.shingShangPiece = piece;
+				//System.out.println(getNeighbourPoint(piece,point).getPiece().getType());
 				eatPiece(piece,getNeighbourPoint(piece,point));
 				movePiece(piece, point);
 			
@@ -385,8 +385,9 @@ public class BoardGame {
 		Point portalJ12 = this.getPoints()[1][5];
 		
 		// Portals of Player2
-		Point portalJ21 = this.getPoints()[1][4];
-		Point portalJ22 = this.getPoints()[1][4];
+		Point portalJ21 = this.getPoints()[8][4];
+		Point portalJ22 = this.getPoints()[8][5];
+		
 		
 		try {
 		if(((portalJ11.getPiece().getType() == "Dragon") && (portalJ11.getPiece().getColor() == colorJ2 )) ||
@@ -395,14 +396,14 @@ public class BoardGame {
 			ret.setFirst(true);
 			ret.setSecond("2");
 		}
-		else if(((portalJ21.getPiece().getType() == "Dragon") && (portalJ21.getPiece().getColor() == colorJ1 )) ||
+		if(((portalJ21.getPiece().getType() == "Dragon") && (portalJ21.getPiece().getColor() == colorJ1 )) ||
 			((portalJ22.getPiece().getType() == "Dragon") && (portalJ22.getPiece().getColor() == colorJ1 ))) {
 			ret.setFirst(true);	
 			ret.setSecond("1");
-		}
+	}
 		}
 		catch(java.lang.NullPointerException Exception) {}
-		
+
 		return ret;
 	}
 
@@ -412,23 +413,29 @@ public class BoardGame {
 		Tuple<Boolean,String> ret = new Tuple<Boolean,String>(false,null);
 		Integer player1Dragons = 0;
 		Integer player2Dragons = 0;
-		 Integer sizeArr = 0;
+		Integer sizeArr = 0;
+		
+		
+		 
 		 if( pieces.get(0).getPieces().size() == pieces.get(1).getPieces().size()) {
 			 sizeArr = pieces.get(0).getPieces().size();
 		 }
 		 else {System.out.println("Error size of pieces arrays");}
+		 
+		
 		
 		for(int i = 0;i<sizeArr;i++) {
 			if((pieces.get(0).getPieces().get(i).getType() == "Dragon" )
 					&& (pieces.get(0).getPieces().get(i).getPieceState() == PieceState.ALIVE)) {
+				
 				player1Dragons++;
 			}
-			else if((pieces.get(1).getPieces().get(i).getType() == "Dragon" )
+			if((pieces.get(1).getPieces().get(i).getType() == "Dragon" )
 					&& (pieces.get(1).getPieces().get(i).getPieceState() == PieceState.ALIVE)) {
+				
 				player2Dragons++;
 			
 			}
-			else  {}	
 		}
 		
 		if(player1Dragons == 0) {

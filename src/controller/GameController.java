@@ -54,7 +54,7 @@ public class GameController {
 
 		Boolean ret = game.PlayerPlays(player1, x1, y1, x2, y2);
 
-		// System.out.println("Move : " + ret );
+		 System.out.println("Move : " + ret );
 		return ret;
 	}
 
@@ -106,7 +106,8 @@ public class GameController {
 
 					if (this.getCurrentPlayerTurn() == 1) {
 						move = Player1Move(from_x, from_y, to_x, to_y);
-					} else {
+					} 
+					if(this.getCurrentPlayerTurn() == 2) {
 						move = Player2Move(from_x, from_y, to_x, to_y);
 					}
 
