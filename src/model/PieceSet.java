@@ -32,5 +32,9 @@ public class PieceSet {
 	public void addPiece(Piece piece) {
 		pieces.add(piece);
 	}
+	
+	public void removePiece(Piece piece) {
+		pieces.remove(piece);
+	}
 
 }

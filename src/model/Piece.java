@@ -23,5 +23,7 @@ public interface Piece {
 	public void setPosition(Point position);
 	
 	public String getColor();
+	
+	public void killPiece();
 
 }

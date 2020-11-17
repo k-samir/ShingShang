@@ -84,5 +84,9 @@ public class Dragon implements Piece {
 	public Point[] valideMoves() {
 		return null;
 	}
+	@Override
+	public void killPiece() {
+		this.pieceState = PieceState.DEAD;
+	}
 
 }

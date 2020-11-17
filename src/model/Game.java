@@ -55,7 +55,7 @@ public class Game {
 			System.out.println("The Destination Point is outside the board, try again");
 		}
 		
-		//Piece piece,Point to_point
+	
 		
 		return ret;
 	}
@@ -64,6 +64,7 @@ public class Game {
 	
 	public void displayBoardGame() {
 		//DISPLAYING BOARDGAME
+		
 		System.out.println("       (#0)   (#1)   (#2)   (#3)   (#4)   (#5)   (#6)   (#7)   (#8)   (#9) ");
 		System.out.print("--------------------------------------------------------------------------");
 		
@@ -77,10 +78,11 @@ public class Game {
 					
 				}
 				
-				if(board_game.getPoints()[i][j].getPoint_type().toString() == "PORTAL") {
+				if(board_game.getPoints()[i][j].getPoint_type().toString() == "PORTAL" && board_game.getPoints()[i][j].getPiece() == null) {
 					System.out.print(" [ P ] ");
+									
 				}
-				else if(board_game.getPoints()[i][j].getPiece() != null) {
+				else if((board_game.getPoints()[i][j].getPiece() != null) && (!board_game.getPoints()[i][j].getPiece().isDead())) {
 					if(board_game.getPoints()[i][j].getPiece().getType() == "Monkey") {
 						System.out.print(" [ M ] ");
 					}

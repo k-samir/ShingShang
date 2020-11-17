@@ -12,12 +12,12 @@ public class BoardGame {
 
 	private String colorJ1;
 	private String colorJ2;
-	
+
 	private MoveValidator moveValidator;
 
 	public BoardGame(String colorJ1, String colorJ2) {
-		//super();
-		
+		// super();
+
 		this.colorJ1 = colorJ1;
 		this.colorJ2 = colorJ2;
 
@@ -26,52 +26,46 @@ public class BoardGame {
 
 		pieces.add(new PieceSet(colorJ1));
 		pieces.add(new PieceSet(colorJ2));
-		
+
 		moveValidator = new MoveValidator();
 
-		
 		// MODIFIEER POUR APPEL DANS GAME
-		//this.init();
+		// this.init();
 
 	}
 
 	public void init() {
-		
+
 		System.out.println("INIT...");
 
-		for (int i = 0; i < 10;i++) {
-			for (int j = 0; j < 10;j++) {
-				
-				if(j%10 == 0) {
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+
+				if (j % 10 == 0) {
 					System.out.println("\n");
 				}
-				
-			
-				if((i == 1 &&  ( j==4 || j==5) || (i == 8 &&  ( j==4 || j==5)))){
+
+				if ((i == 1 && (j == 4 || j == 5) || (i == 8 && (j == 4 || j == 5)))) {
 					this.getPoints()[i][j] = new Point(i, j, "Portal");
 				}
-				
-				else if (j==0 || j==9){
+
+				else if (j == 0 || j == 9) {
 					this.getPoints()[i][j] = new Point(i, j, "Nothing");
-				}
-				else {
+				} else {
 					this.getPoints()[i][j] = new Point(i, j, "Standard");
-					
+
 				}
-				
-		
-				
+
 			}
 		}
-		
-		// ADDING POINT O,4 -  0,5 - 4,9 -- 5,9
+
+		// ADDING POINT O,4 - 0,5 - 4,9 -- 5,9
 		this.getPoints()[4][0] = new Point(4, 0, "Standard");
 		this.getPoints()[5][0] = new Point(5, 0, "Standard");
-		
+
 		this.getPoints()[4][9] = new Point(4, 9, "Standard");
 		this.getPoints()[5][9] = new Point(5, 9, "Standard");
-		
-		
+
 		this.addDragon1(0, 1);
 		this.addDragon1(0, 8);
 		this.addLion1(0, 2);
@@ -97,8 +91,6 @@ public class BoardGame {
 		this.addMonkey2(9, 6);
 		this.addMonkey2(8, 7);
 		this.addMonkey2(7, 8);
-		
-		
 
 	}
 
@@ -173,42 +165,166 @@ public class BoardGame {
 		this.getPoints()[to_point.getN_row()][to_point.getN_column()].setPiece(piece);
 	}
 	
+	public void removePiece(Point point) {
+		point.setPiece(null);
+	}
+
 	public void eatPiece(Piece piece, Point point) {
+		System.out.println(piece.getType() +" du joueur " + piece.getColor() + " saute par dessus : " + point.getPiece().getType() 
+				+ " du joueur " + point.getPiece().getColor() + " et l'attrape.");
+	
+			point.getPiece().killPiece();
+			removePiece(point);
+		
 		
 	}
 
 	public Boolean placePiece(Piece piece, Point point) {
-		
+
 		Boolean ret = false;
-		Tuple<Boolean,String> moveData = moveValidator.moveValid(piece, point,getPoints());
-		
+		Tuple<Boolean, String> moveData = moveValidator.moveValid(piece, point, getPoints());
+
 		// CHECK IF MOVE OK
-		if(moveData.getFirst()) {
-			
+		if (moveData.getFirst()) {
+
 			System.out.println(moveData.getSecond());
-			if(moveData.getSecond() == "Jump") {
-				movePiece(piece,point);
+			if (moveData.getSecond() == "EnnemyJump") {
+				eatPiece(piece,getNeighbourPoint(piece,point));
+				movePiece(piece, point);
+			
+			} else {
+				movePiece(piece, point);
 			}
-			else {
-				movePiece(piece,point);
-			}
-			
-			
-			
+
 			ret = true;
-		}
-		else {
+		} else {
 			ret = false;
 			System.out.println("The Move is not allowed, try again");
 		}
-		
+
 		return ret;
-		
+
 	}
 
-	public void removePiece(Point point) {
-		point.setPiece(null);
-	}
 	
+
+	public Point getNeighbourPoint(Piece piece, Point point_to ) {
+		
+		Point[][] all_points = getPoints();
+		Point ret = null;
+		
+		int x = piece.getPosition().getN_row();
+		int y = piece.getPosition().getN_column();
+		
+		//CROSS
+
+		try {
+			// CHECK IF DESTINATION IS IN BIG SQUARE
+			// UP 
+			if (all_points[x - 2][y].equals(point_to)) {
+
+				// Check if the piece has a neighbour between itself and the destination
+				if (all_points[x - 1][y].isUsed()) {
+					ret = all_points[x - 1][y];
+				}
+			}
+		} catch (java.lang.ArrayIndexOutOfBoundsException Exception) {
+		}
+
+		try {
+			// CHECK IF DESTINATION IS IN BIG SQUARE
+			// DOWN
+			if (all_points[x + 2][y].equals(point_to)) {
+
+				// Check if the piece has a neighbour between itself and the destination
+				if (all_points[x + 1][y].isUsed()) {
+					//System.out.println("POSITION POINT A MANGER" + x+1 + "," + y);
+					ret = all_points[x + 1][y];
+				}
+			}
+		} catch (java.lang.ArrayIndexOutOfBoundsException Exception) {
+		}
+
+		try {
+			// CHECK IF DESTINATION IS IN BIG SQUARE
+			// LEFT
+			if (all_points[x][y - 2].equals(point_to)) {
+
+				// Check if the piece has a neighbour between itself and the destination
+				if (all_points[x][y - 1].isUsed()) {
+					ret = all_points[x][y - 1];
+				}
+			}
+		} catch (java.lang.ArrayIndexOutOfBoundsException Exception) {
+		}
+
+		try {
+			// CHECK IF DESTINATION IS IN BIG SQUARE
+			// RIGHT
+			if (all_points[x][y + 2].equals(point_to)) {
+
+				// Check if the piece has a neighbour between itself and the destination
+				if (all_points[x][y + 1].isUsed()) {
+					ret = all_points[x][y + 2];
+				}
+			}
+		} catch (java.lang.ArrayIndexOutOfBoundsException Exception) {
+		}
+
+// DIAGONALS
+		try {
+			// CHECK IF DESTINATION IS IN BIG SQUARE
+			// TOP LEFT CORNER
+			if (all_points[x - 2][y - 2].equals(point_to)) {
+
+				// Check if the piece has a neighbour between itself and the destination
+				if (all_points[x - 1][y - 1].isUsed()) {
+					ret = all_points[x - 1][y - 1];
+				}
+			}
+		} catch (java.lang.ArrayIndexOutOfBoundsException Exception) {
+		}
+
+		try {
+			// BOTTOM LEFT CORNER
+			if (all_points[x + 2][y - 2].equals(point_to)) {
+
+				// Check if the piece has a neighbour between itself and the destination
+				if (all_points[x + 1][y - 1].isUsed()) {
+					ret = all_points[x + 1][y - 1];
+				}
+			}
+		} catch (java.lang.ArrayIndexOutOfBoundsException Exception) {
+		}
+
+		try {
+			// TOP RIGHT CORNER
+			if (all_points[x - 2][y + 2].equals(point_to)) {
+
+				// Check if the piece has a neighbour between itself and the destination
+				if (all_points[x - 1][y + 1].isUsed()) {
+					ret = all_points[x - 1][y + 1];
+				}
+			}
+		} catch (java.lang.ArrayIndexOutOfBoundsException Exception) {
+		}
+
+		try {
+			// BOTTOM RIGHT CORNER
+			if (all_points[x + 2][y + 2].equals(point_to)) {
+				System.out.print("ok");
+				// Check if the piece has a neighbour between itself and the destination
+				if (all_points[x + 1][y + 1].isUsed()) {
+
+					ret = all_points[x + 1][y + 1];
+
+				}
+			}
+		} catch (java.lang.ArrayIndexOutOfBoundsException Exception) {
+		}
+
+		return ret;
+
+	}
 
 }

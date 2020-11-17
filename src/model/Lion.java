@@ -85,6 +85,11 @@ public class Lion implements Piece {
 		return null;
 	}
 	
+	@Override
+	public void killPiece() {
+		this.pieceState = PieceState.DEAD;
+	}
+
 
 	
 

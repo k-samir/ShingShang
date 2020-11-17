@@ -84,5 +84,10 @@ public class Monkey implements Piece {
 	public Point[] valideMoves() {
 		return null;
 	}
+	
+	@Override
+	public void killPiece() {
+		this.pieceState = PieceState.DEAD;
+	}
 
 }
