@@ -14,11 +14,9 @@ public class BoardGame {
 	private String colorJ2;
 
 	private MoveValidator moveValidator;
-	
+
 	public Boolean shingShangSeq = false;
 	private Piece shingShangPiece = null;
-
-	
 
 	public BoardGame(String colorJ1, String colorJ2) {
 		// super();
@@ -72,8 +70,8 @@ public class BoardGame {
 		this.getPoints()[4][9] = new Point(4, 9, "Standard");
 		this.getPoints()[5][9] = new Point(5, 9, "Standard");
 
-	//	this.addDragon1(0, 1);
-	//	this.addDragon1(0, 8);
+		this.addDragon1(0, 1);
+		this.addDragon1(0, 8);
 		this.addLion1(0, 2);
 		this.addLion1(1, 1);
 		this.addLion1(1, 8);
@@ -85,8 +83,8 @@ public class BoardGame {
 		this.addMonkey1(2, 1);
 		this.addMonkey1(2, 8);
 
-	//	this.addDragon2(9, 1);
-	//	this.addDragon2(9, 8);
+		this.addDragon2(9, 1);
+		this.addDragon2(9, 8);
 		this.addLion2(8, 1);
 		this.addLion2(9, 2);
 		this.addLion2(9, 7);
@@ -97,14 +95,13 @@ public class BoardGame {
 		this.addMonkey2(9, 6);
 		this.addMonkey2(8, 7);
 		this.addMonkey2(7, 8);
-		
-		//TESTING PIECES
-		this.addDragon1(4, 3);
-	//	this.addMonkey1(7, 4);
-		
+
+		// TESTING PIECES
+		this.addDragon1(6, 4);
+		this.addMonkey1(7, 4);
+
 		this.addDragon2(4, 4);
-	//	this.addMonkey2(4, 6);
-		
+		this.addMonkey2(4, 6);
 
 	}
 
@@ -178,69 +175,65 @@ public class BoardGame {
 		piece.setPosition(to_point);
 		this.getPoints()[to_point.getN_row()][to_point.getN_column()].setPiece(piece);
 	}
-	
+
 	public void removePiece(Point point) {
 		point.setPiece(null);
 	}
 
 	public void eatPiece(Piece piece, Point point) {
-		
-		System.out.println(piece.getType() +" du joueur " + piece.getColor() + " saute par dessus : " + point.getPiece().getType() 
-				+ " du joueur " + point.getPiece().getColor() + " et l'attrape.");
-	
-			point.getPiece().killPiece();
-			removePiece(point);
-		
+
+		System.out.println(piece.getType() + " du joueur " + piece.getColor() + " saute par dessus : "
+				+ point.getPiece().getType() + " du joueur " + point.getPiece().getColor() + " et l'attrape.");
+
+		point.getPiece().killPiece();
+		removePiece(point);
+
 	}
 
 	public Boolean placePiece(Piece piece, Point point) {
-		
+
 		Boolean ret = false;
-		
-		if(piece.equals(shingShangPiece)) {
+
+		if (piece.equals(shingShangPiece)) {
 			System.out.println("Choose another Piece, you already did a ShingShang sequence with this piece.");
-		}
-		else {
-		
-		
-		Tuple<Boolean, String> moveData = moveValidator.moveValid(piece, point, getPoints());
-
-		// CHECK IF MOVE OK -- getFirst return the Boolean of moveValidator ( move is valid or not ) 
-		if (moveData.getFirst()) {
-			// Reset the current ShingShangPiece
-			setShingShangPiece(null);
-			
-						if (moveData.getSecond() == "EnnemyJump") {
-				System.out.println("SHING-SHANG");
-				this.shingShangSeq = true;
-				this.shingShangPiece = piece;
-				//System.out.println(getNeighbourPoint(piece,point).getPiece().getType());
-				eatPiece(piece,getNeighbourPoint(piece,point));
-				movePiece(piece, point);
-			
-			} 
-			else if(moveData.getSecond() == "AllyJump") {
-				this.shingShangSeq = true;
-				movePiece(piece, point);
-			}
-			
-			else{
-				this.shingShangSeq = false;
-				movePiece(piece, point);
-			}
-
-			ret = true;
 		} else {
-			ret = false;
-			System.out.println("The Move is not allowed, try again");
-		}
 
-		
+			Tuple<Boolean, String> moveData = moveValidator.moveValid(piece, point, getPoints());
+
+			// CHECK IF MOVE OK -- getFirst return the Boolean of moveValidator ( move is
+			// valid or not )
+			if (moveData.getFirst()) {
+				// Reset the current ShingShangPiece
+				setShingShangPiece(null);
+
+				if (moveData.getSecond() == "EnnemyJump") {
+					System.out.println("SHING-SHANG");
+					this.shingShangSeq = true;
+					this.shingShangPiece = piece;
+
+					eatPiece(piece, getNeighbourPoint(piece, point));
+
+					movePiece(piece, point);
+
+				} else if (moveData.getSecond() == "AllyJump") {
+					this.shingShangSeq = true;
+					movePiece(piece, point);
+				}
+
+				else {
+					this.shingShangSeq = false;
+					movePiece(piece, point);
+				}
+
+				ret = true;
+			} else {
+				ret = false;
+				System.out.println("The Move is not allowed, try again");
+			}
+
 		}
 		return ret;
 	}
-
-	
 
 	public Piece getShingShangPiece() {
 		return shingShangPiece;
@@ -250,19 +243,19 @@ public class BoardGame {
 		this.shingShangPiece = shingShangPiece;
 	}
 
-	public Point getNeighbourPoint(Piece piece, Point point_to ) {
-		
+	public Point getNeighbourPoint(Piece piece, Point point_to) {
+
 		Point[][] all_points = getPoints();
 		Point ret = null;
-		
+
 		int x = piece.getPosition().getN_row();
 		int y = piece.getPosition().getN_column();
-		
-		//CROSS
+
+		// CROSS
 
 		try {
 			// CHECK IF DESTINATION IS IN BIG SQUARE
-			// UP 
+			// UP
 			if (all_points[x - 2][y].equals(point_to)) {
 
 				// Check if the piece has a neighbour between itself and the destination
@@ -280,7 +273,7 @@ public class BoardGame {
 
 				// Check if the piece has a neighbour between itself and the destination
 				if (all_points[x + 1][y].isUsed()) {
-					//System.out.println("POSITION POINT A MANGER" + x+1 + "," + y);
+					// System.out.println("POSITION POINT A MANGER" + x+1 + "," + y);
 					ret = all_points[x + 1][y];
 				}
 			}
@@ -307,7 +300,7 @@ public class BoardGame {
 
 				// Check if the piece has a neighbour between itself and the destination
 				if (all_points[x][y + 1].isUsed()) {
-					ret = all_points[x][y + 2];
+					ret = all_points[x][y + 1];
 				}
 			}
 		} catch (java.lang.ArrayIndexOutOfBoundsException Exception) {
@@ -354,7 +347,7 @@ public class BoardGame {
 		try {
 			// BOTTOM RIGHT CORNER
 			if (all_points[x + 2][y + 2].equals(point_to)) {
-				System.out.print("ok");
+				
 				// Check if the piece has a neighbour between itself and the destination
 				if (all_points[x + 1][y + 1].isUsed()) {
 
@@ -368,86 +361,100 @@ public class BoardGame {
 		return ret;
 
 	}
-	
+
 	public boolean getShingShangSeq() {
 		return shingShangSeq;
 	}
-	
+
 	public void setShingShangSeq(Boolean bool) {
 		this.shingShangSeq = bool;
 	}
 
-	public Tuple<Boolean,String> onPortalCheck() {
-		
-		Tuple<Boolean,String> ret = new Tuple<Boolean,String>(false,null);
-		//Portals of Player 1
-		Point portalJ11 = this.getPoints()[1][4];
-		Point portalJ12 = this.getPoints()[1][5];
-		
-		// Portals of Player2
-		Point portalJ21 = this.getPoints()[8][4];
-		Point portalJ22 = this.getPoints()[8][5];
-		
-		
-		try {
-		if(((portalJ11.getPiece().getType() == "Dragon") && (portalJ11.getPiece().getColor() == colorJ2 )) ||
-			((portalJ12.getPiece().getType() == "Dragon") && (portalJ12.getPiece().getColor() == colorJ2 ))){
-			
-			ret.setFirst(true);
-			ret.setSecond("2");
+	public Tuple<Boolean, String> onPortalCheck() {
+
+		Tuple<Boolean, String> ret = new Tuple<Boolean, String>(false, null);
+
+		for (int x = 0; x < 10; x++) {
+			for (int y = 0; y < 10; y++) {
+				if (this.getPoints()[x][y].getPiece() != null) {
+					if ((this.getPoints()[x][y].getPiece().getType() == "Dragon")
+							&& ((x == 1 || x == 8) && (y == 5 || y == 4))) {
+						if (x == 1) {
+
+							if (getPoints()[x][y].getPiece().getColor() == colorJ2) {
+								ret.setFirst(true);
+								ret.setSecond("2");
+								System.out.println("+--------------------------------------+\r\n"
+										+ "|   Player 2 is on opponent Portal !   |\r\n"
+										+ "+--------------------------------------+\r\n"
+										);
+							}
+						}
+						if (x == 8) {
+
+							if (getPoints()[x][y].getPiece().getColor() == colorJ1) {
+								ret.setFirst(true);
+								ret.setSecond("1");
+								System.out.println("+--------------------------------------+\r\n"
+										+ "|   Player 1 is on opponent Portal !   |\r\n"
+										+ "+--------------------------------------+\r\n"
+										);
+							}
+						}
+					}
+				}
+
+			}
 		}
-		if(((portalJ21.getPiece().getType() == "Dragon") && (portalJ21.getPiece().getColor() == colorJ1 )) ||
-			((portalJ22.getPiece().getType() == "Dragon") && (portalJ22.getPiece().getColor() == colorJ1 ))) {
-			ret.setFirst(true);	
-			ret.setSecond("1");
-	}
-		}
-		catch(java.lang.NullPointerException Exception) {}
 
 		return ret;
 	}
 
 	public Tuple<Boolean, String> noDragonCheck() {
-		
+
 		// Check if there is no Dragon left on one side to end the game
-		Tuple<Boolean,String> ret = new Tuple<Boolean,String>(false,null);
+		Tuple<Boolean, String> ret = new Tuple<Boolean, String>(false, null);
 		Integer player1Dragons = 0;
 		Integer player2Dragons = 0;
 		Integer sizeArr = 0;
-		
-		
-		 
-		 if( pieces.get(0).getPieces().size() == pieces.get(1).getPieces().size()) {
-			 sizeArr = pieces.get(0).getPieces().size();
-		 }
-		 else {System.out.println("Error size of pieces arrays");}
-		 
-		
-		
-		for(int i = 0;i<sizeArr;i++) {
-			if((pieces.get(0).getPieces().get(i).getType() == "Dragon" )
+
+		if (pieces.get(0).getPieces().size() == pieces.get(1).getPieces().size()) {
+			sizeArr = pieces.get(0).getPieces().size();
+		} else {
+			System.out.println("Error size of pieces arrays");
+		}
+
+		for (int i = 0; i < sizeArr; i++) {
+			if ((pieces.get(0).getPieces().get(i).getType() == "Dragon")
 					&& (pieces.get(0).getPieces().get(i).getPieceState() == PieceState.ALIVE)) {
-				
+
 				player1Dragons++;
 			}
-			if((pieces.get(1).getPieces().get(i).getType() == "Dragon" )
+			if ((pieces.get(1).getPieces().get(i).getType() == "Dragon")
 					&& (pieces.get(1).getPieces().get(i).getPieceState() == PieceState.ALIVE)) {
-				
+
 				player2Dragons++;
-			
+
 			}
 		}
-		
-		if(player1Dragons == 0) {
+
+		if (player1Dragons == 0) {
 			ret.setFirst(true);
 			ret.setSecond("2");
-		}
-		else if (player2Dragons == 0) {
+			System.out.println("+--------------------------------------+\r\n"
+					+ "|   Player 2 has no Dragon Left !   |\r\n"
+					+ "+--------------------------------------+\r\n"
+					);
+		} else if (player2Dragons == 0) {
 			ret.setFirst(true);
 			ret.setSecond("1");
+			System.out.println("+--------------------------------------+\r\n"
+					+ "|   Player 2 has no Dragon Left !   |\r\n"
+					+ "+--------------------------------------+\r\n"
+					);
+		} else {
 		}
-		else {}
-		
+
 		return ret;
 	}
 

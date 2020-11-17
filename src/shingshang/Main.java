@@ -2,6 +2,7 @@ package shingshang;
 
 import java.io.BufferedReader;
 import java.io.Console;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
@@ -24,10 +25,24 @@ public class Main {
 	
 	gameC.createTheGame(player1, player2);
 
+	System.out.println("                                               \r\n"
+			+ " _____ _   _             _____ _               \r\n"
+			+ "|   __| |_|_|___ ___ ___|   __| |_ ___ ___ ___ \r\n"
+			+ "|__   |   | |   | . |___|__   |   | .'|   | . |\r\n"
+			+ "|_____|_|_|_|_|_|_  |   |_____|_|_|__,|_|_|_  |\r\n"
+			+ "                |___|                     |___|");
+	Scanner sc = new Scanner(System.in);
+
+	 while (true) {
+         System.out.println("Press any key to begin ...");
+         
+         String line = sc.nextLine();
+
+         break;
+     }
 	gameC.startTheGame();
 
-	Scanner sc = new Scanner(System.in);
-			
+				
 	while(!gameC.WinnerExist()) {
 		gameC.nextTurn(sc);
 	}

@@ -54,7 +54,6 @@ public class GameController {
 
 		Boolean ret = game.PlayerPlays(player1, x1, y1, x2, y2);
 
-		 System.out.println("Move : " + ret );
 		return ret;
 	}
 
@@ -62,7 +61,6 @@ public class GameController {
 
 		Boolean ret = game.PlayerPlays(player2, x1, y1, x2, y2);
 
-		System.out.println("Move : " + ret);
 		return ret;
 	}
 
@@ -81,7 +79,7 @@ public class GameController {
 	}
 	
 	public Boolean WinnerExist() {
-		System.out.print(this.game.getWinner() != null);
+		//System.out.print(this.game.getWinner() != null);
 		return this.game.getWinner() != null;
 	}
 		

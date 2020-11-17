@@ -15,7 +15,6 @@ public class MoveValidator {
 		Tuple<Boolean, String> ret = new Tuple<Boolean, String>(false, "");
 
 		// MOVEMENT LOGIC
-		System.out.print(piece.getType());
 		// MONKEY
 		if (piece.getType() == "Monkey") {
 			if (hasNeighbour(piece, point_to, all_points)) {
@@ -39,7 +38,7 @@ public class MoveValidator {
 				ret.setSecond("Direct");
 			}
 		} else if (piece.getType() == "Dragon") {
-			System.out.print("entr");
+			
 			ret.setFirst(canJump(piece, point_to, all_points));
 			ret.setSecond(jumpType);
 			jumpType = "";
@@ -157,7 +156,7 @@ public class MoveValidator {
 		try {
 			// BOTTOM RIGHT CORNER
 			if (all_points[x + 2][y + 2].equals(point_to)) {
-				System.out.print("ok");
+				
 				// Check if the piece has a neighbour between itself and the destination
 				if (all_points[x + 1][y + 1].isUsed()) {
 
@@ -316,10 +315,10 @@ public class MoveValidator {
 		try {
 			// BOTTOM RIGHT CORNER
 			if (all_points[x + 2][y + 2].equals(point_to)) {
-				System.out.print("ok");
+				
 				// Check if the piece has a neighbour between itself and the destination
 				if (all_points[x + 1][y + 1].isUsed()) {
-					System.out.print("ok2");
+				
 					// Check if piece canjump over smaller piece or equal size
 					if (getNeighbourSize(piece,x + 1, y + 1, all_points) <= piece.getSize()) {
 						canJump = true;
