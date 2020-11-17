@@ -28,7 +28,7 @@ public class Main {
 
 	Scanner sc = new Scanner(System.in);
 			
-	while(!gameC.isWinner()) {
+	while(!gameC.WinnerExist()) {
 		gameC.nextTurn(sc);
 	}
 	

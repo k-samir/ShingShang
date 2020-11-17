@@ -65,6 +65,7 @@ public class BoardGame {
 		}
 
 		// ADDING POINT O,4 - 0,5 - 4,9 -- 5,9
+		// FOUR SIDE POINT ON THE BOARD
 		this.getPoints()[4][0] = new Point(4, 0, "Standard");
 		this.getPoints()[5][0] = new Point(5, 0, "Standard");
 
@@ -96,6 +97,14 @@ public class BoardGame {
 		this.addMonkey2(9, 6);
 		this.addMonkey2(8, 7);
 		this.addMonkey2(7, 8);
+		
+		//TESTING PIECES
+		this.addDragon1(6, 4);
+		this.addMonkey1(7, 4);
+		
+		this.addDragon2(3, 6);
+		this.addMonkey2(4, 6);
+		
 
 	}
 
@@ -216,6 +225,7 @@ public class BoardGame {
 			}
 			
 			else{
+				this.shingShangSeq = false;
 				movePiece(piece, point);
 			}
 
@@ -359,12 +369,79 @@ public class BoardGame {
 
 	}
 	
-	public Boolean getShingShangSeq() {
+	public boolean getShingShangSeq() {
 		return shingShangSeq;
 	}
 	
 	public void setShingShangSeq(Boolean bool) {
 		this.shingShangSeq = bool;
+	}
+
+	public Tuple<Boolean,String> onPortalCheck() {
+		
+		Tuple<Boolean,String> ret = new Tuple<Boolean,String>(false,null);
+		//Portals of Player 1
+		Point portalJ11 = this.getPoints()[1][4];
+		Point portalJ12 = this.getPoints()[1][5];
+		
+		// Portals of Player2
+		Point portalJ21 = this.getPoints()[1][4];
+		Point portalJ22 = this.getPoints()[1][4];
+		
+		try {
+		if(((portalJ11.getPiece().getType() == "Dragon") && (portalJ11.getPiece().getColor() == colorJ2 )) ||
+			((portalJ12.getPiece().getType() == "Dragon") && (portalJ12.getPiece().getColor() == colorJ2 ))){
+			
+			ret.setFirst(true);
+			ret.setSecond("2");
+		}
+		else if(((portalJ21.getPiece().getType() == "Dragon") && (portalJ21.getPiece().getColor() == colorJ1 )) ||
+			((portalJ22.getPiece().getType() == "Dragon") && (portalJ22.getPiece().getColor() == colorJ1 ))) {
+			ret.setFirst(true);	
+			ret.setSecond("1");
+		}
+		}
+		catch(java.lang.NullPointerException Exception) {}
+		
+		return ret;
+	}
+
+	public Tuple<Boolean, String> noDragonCheck() {
+		
+		// Check if there is no Dragon left on one side to end the game
+		Tuple<Boolean,String> ret = new Tuple<Boolean,String>(false,null);
+		Integer player1Dragons = 0;
+		Integer player2Dragons = 0;
+		 Integer sizeArr = 0;
+		 if( pieces.get(0).getPieces().size() == pieces.get(1).getPieces().size()) {
+			 sizeArr = pieces.get(0).getPieces().size();
+		 }
+		 else {System.out.println("Error size of pieces arrays");}
+		
+		for(int i = 0;i<sizeArr;i++) {
+			if((pieces.get(0).getPieces().get(i).getType() == "Dragon" )
+					&& (pieces.get(0).getPieces().get(i).getPieceState() == PieceState.ALIVE)) {
+				player1Dragons++;
+			}
+			else if((pieces.get(1).getPieces().get(i).getType() == "Dragon" )
+					&& (pieces.get(1).getPieces().get(i).getPieceState() == PieceState.ALIVE)) {
+				player2Dragons++;
+			
+			}
+			else  {}	
+		}
+		
+		if(player1Dragons == 0) {
+			ret.setFirst(true);
+			ret.setSecond("2");
+		}
+		else if (player2Dragons == 0) {
+			ret.setFirst(true);
+			ret.setSecond("1");
+		}
+		else {}
+		
+		return ret;
 	}
 
 }

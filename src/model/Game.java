@@ -4,6 +4,7 @@ public class Game {
 	private Player  player1,player2;
 	private BoardGame board_game;
 	private GameState gameState;
+	private Player winner = null;
 	
 	
 	public Game(Player player1, Player player2) {
@@ -11,7 +12,7 @@ public class Game {
 		
 		this.player1 = player1;
 		this.player2 = player2;
-		
+		this.gameState = GameState.INGAME;
 		
 		this.board_game = new BoardGame(player1.getColor(),player2.getColor());
 		//this.board_game.init();
@@ -62,18 +63,49 @@ public class Game {
 			System.out.println("The Destination Point is outside the board, try again");
 		}
 		
-		// GAME OVER WHEN DRAGON IS ON PORTAL OF OPONENT 
-		// OR OPPONENT HAVE NO DRAGON
 		
-		//if(this.board_game.portalCheck)
-		
-	
-		
+			
 		return ret;
 	}
 	
+	public void checkGameOver(){	
 	
+	// GAME OVER WHEN DRAGON IS ON PORTAL OF OPONENT 
+			// OR OPPONENT HAVE NO DRAGON
+			Tuple<Boolean, String> game_over = this.board_game.onPortalCheck();
+			Tuple<Boolean, String> game_over2 = this.board_game.noDragonCheck();
+			
+			if(game_over.getFirst()) {
+				System.out.println("entrer1");
+				this.setGameState(gameState.ENDGAME);
+				if(game_over.getSecond() == "1") {
+					this.setWinner(this.player1);
+				}
+				else {
+					this.setWinner(this.player2);
+				}
+			}
+			if(game_over2.getFirst()) {
+				System.out.println("entrer2");
+				this.setGameState(gameState.ENDGAME);
+				if(game_over.getSecond() == "2") {
+					this.setWinner(this.player2);
+				}
+				else {
+					this.setWinner(this.player1);
+				}
+			}
+			
+	}
 	
+	public Player getWinner() {
+		return winner;
+	}
+
+	public void setWinner(Player winner) {
+		this.winner = winner;
+	}
+
 	public void displayBoardGame() {
 		//DISPLAYING BOARDGAME
 		
