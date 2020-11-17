@@ -23,6 +23,13 @@ public class Game {
 		this.board_game.init();
 	}
 	
+	public Boolean ShingShangSeq() {
+		return this.board_game.getShingShangSeq();
+	}
+	
+	public void setShingShangSeq(Boolean bool) {
+		this.board_game.setShingShangSeq(bool);
+	}
 	
 	public Boolean PlayerPlays(Player player,int x1,int y1,int x2,int y2) {
 		// CHECK IF PIECE IS PLAYERS
@@ -54,6 +61,11 @@ public class Game {
 			ret = false;
 			System.out.println("The Destination Point is outside the board, try again");
 		}
+		
+		// GAME OVER WHEN DRAGON IS ON PORTAL OF OPONENT 
+		// OR OPPONENT HAVE NO DRAGON
+		
+		//if(this.board_game.portalCheck)
 		
 	
 		

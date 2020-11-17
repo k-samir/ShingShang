@@ -106,14 +106,21 @@ public class GameController {
 					move = Player2Move(from_x,from_y,to_x,to_y);
 				}
 				
+				
+				
 			}
 			// PASSING 
 			else if(action == 2) {
 				move = true;
+				game.setShingShangSeq(false);
 			}
+			
 		}
-		
-		this.switchPlayer();	
+		if(!game.ShingShangSeq()) {
+			
+			this.switchPlayer();
+		}
+			
 		this.displayBoard();
 	}
 	

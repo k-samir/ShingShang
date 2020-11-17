@@ -14,6 +14,11 @@ public class BoardGame {
 	private String colorJ2;
 
 	private MoveValidator moveValidator;
+	
+	public Boolean shingShangSeq = false;
+	private Piece shingShangPiece = null;
+
+	
 
 	public BoardGame(String colorJ1, String colorJ2) {
 		// super();
@@ -180,19 +185,37 @@ public class BoardGame {
 	}
 
 	public Boolean placePiece(Piece piece, Point point) {
-
+		
 		Boolean ret = false;
+		
+		if(piece.equals(shingShangPiece)) {
+			System.out.println("Choose another Piece, you already did a ShingShang sequence with this piece.");
+		}
+		else {
+		
+		
 		Tuple<Boolean, String> moveData = moveValidator.moveValid(piece, point, getPoints());
 
-		// CHECK IF MOVE OK
+		// CHECK IF MOVE OK -- getFirst return the Boolean of moveValidator ( move is valid or not ) 
 		if (moveData.getFirst()) {
-
+			// Reset the current ShingShangPiece
+			setShingShangPiece(null);
+			
 			System.out.println(moveData.getSecond());
 			if (moveData.getSecond() == "EnnemyJump") {
+				System.out.println("SHING-SHANG");
+				this.shingShangSeq = true;
+				this.shingShangPiece = piece;
 				eatPiece(piece,getNeighbourPoint(piece,point));
 				movePiece(piece, point);
 			
-			} else {
+			} 
+			else if(moveData.getSecond() == "AllyJump") {
+				this.shingShangSeq = true;
+				movePiece(piece, point);
+			}
+			
+			else{
 				movePiece(piece, point);
 			}
 
@@ -202,11 +225,20 @@ public class BoardGame {
 			System.out.println("The Move is not allowed, try again");
 		}
 
+		
+		}
 		return ret;
-
 	}
 
 	
+
+	public Piece getShingShangPiece() {
+		return shingShangPiece;
+	}
+
+	public void setShingShangPiece(Piece shingShangPiece) {
+		this.shingShangPiece = shingShangPiece;
+	}
 
 	public Point getNeighbourPoint(Piece piece, Point point_to ) {
 		
@@ -325,6 +357,14 @@ public class BoardGame {
 
 		return ret;
 
+	}
+	
+	public Boolean getShingShangSeq() {
+		return shingShangSeq;
+	}
+	
+	public void setShingShangSeq(Boolean bool) {
+		this.shingShangSeq = bool;
 	}
 
 }
