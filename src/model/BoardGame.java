@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class BoardGame {
 
-	private final int ROW = 10;
-	private final int COLUMN = 10;
+	//private final int ROW = 10;
+	//private final int COLUMN = 10;
 
 	private ArrayList<PieceSet> pieces;
 	private Point[][] points;

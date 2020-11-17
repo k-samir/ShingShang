@@ -1,21 +1,18 @@
 package shingshang;
 
-import java.io.BufferedReader;
-import java.io.Console;
-import java.io.IOException;
-import java.io.InputStreamReader;
+
 import java.util.Scanner;
 
 import controller.GameController;
 import model.Player;
-import view.GameGUI;
+//import view.GameGUI;
 
 public class Main {
 
 	public static void main(String[] args) {
 	
 		
-	GameGUI gameGui = new GameGUI();
+	//GameGUI gameGui = new GameGUI();
 	GameController gameC = new GameController();	
 		
 	//CREATE PLAYERS
@@ -36,7 +33,7 @@ public class Main {
 	 while (true) {
          System.out.println("Press any key to begin ...");
          
-         String line = sc.nextLine();
+         sc.nextLine();
 
          break;
      }

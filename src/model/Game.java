@@ -80,7 +80,7 @@ public class Game {
 			
 			if(game_over.getFirst()) {
 				
-				this.setGameState(gameState.ENDGAME);
+				this.setGameState(GameState.ENDGAME);
 				if(game_over.getSecond() == "1") {
 					this.setWinner(this.player1);
 				}
@@ -90,7 +90,7 @@ public class Game {
 			}
 			if(game_over2.getFirst()) {
 				
-				this.setGameState(gameState.ENDGAME);
+				this.setGameState(GameState.ENDGAME);
 				if(game_over2.getSecond() == "2") {
 					this.setWinner(this.player2);
 				}

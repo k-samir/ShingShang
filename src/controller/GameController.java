@@ -3,10 +3,9 @@ package controller;
 import java.util.Scanner;
 
 import model.Game;
-import model.GameState;
-import model.Piece;
+
 import model.Player;
-import model.Point;
+
 
 public class GameController {
 
