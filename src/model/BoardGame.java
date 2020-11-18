@@ -442,7 +442,7 @@ public class BoardGame {
 			ret.setFirst(true);
 			ret.setSecond("2");
 			System.out.println("+--------------------------------------+\r\n"
-					+ "|   Player 2 has no Dragon Left !   |\r\n"
+					+ "|   Player 1 has no Dragon Left !   |\r\n"
 					+ "+--------------------------------------+\r\n"
 					);
 		} else if (player2Dragons == 0) {
