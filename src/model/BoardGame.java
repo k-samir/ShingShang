@@ -39,13 +39,13 @@ public class BoardGame {
 
 	public void init() {
 
-		System.out.println("INIT...");
+		//System.out.println("INIT...");
 
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 
 				if (j % 10 == 0) {
-					System.out.println("\n");
+					//System.out.println("\n");
 				}
 
 				if ((i == 1 && (j == 4 || j == 5) || (i == 8 && (j == 4 || j == 5)))) {
@@ -456,6 +456,10 @@ public class BoardGame {
 		}
 
 		return ret;
+	}
+	
+	public ArrayList<Point> getValidMoves(Piece piece){
+		return moveValidator.getValidMoves(piece, getPoints());
 	}
 
 }

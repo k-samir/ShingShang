@@ -349,7 +349,7 @@ public class MoveValidator {
 
 					// VERTICAL CHECK
 					if ((Math.abs(x - n_row) < 3) && (y == n_col)) {
-						System.out.println(x + " " + y);
+						//System.out.println(x + " " + y);
 						if (all_points[x][y].equals(point_to)) {
 							verification = true;
 						}
@@ -397,7 +397,7 @@ public class MoveValidator {
 
 					// VERTICAL CHECK
 					if ((Math.abs(x - n_row) < 2) && (y == n_col)) {
-						System.out.println(x + " " + y);
+						//System.out.println(x + " " + y);
 						if (all_points[x][y].equals(point_to)) {
 							verification = true;
 						}
@@ -429,8 +429,22 @@ public class MoveValidator {
 		return verification;
 	}
 
-	public ArrayList<Point> getValidMoves(Piece piece, ArrayList<Point> points) {
+	public ArrayList<Point> getValidMoves(Piece piece,  Point[][] all_points) {
 		// LOGIC
-		return points;
+		
+		ArrayList<Point> all_valid_moves = new ArrayList<Point>();
+		
+		for(var i = 0; i < all_points.length; i++){
+		    for(var j = 0; j < all_points[i].length; j++){
+		    	if(moveValid(piece, all_points[i][j], all_points).getFirst()) {
+		    		if((!all_points[i][j].isUsed()) && (all_points[i][j].isUsable())) {
+		    			all_valid_moves.add(all_points[i][j]);
+		    			
+		    		}
+		    	}
+		    }
+		}
+				
+		return all_valid_moves;
 	}
 }

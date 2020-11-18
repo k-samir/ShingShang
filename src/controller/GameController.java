@@ -115,6 +115,21 @@ public class GameController {
 					game.setShingShangSeq(false);
 				}
 				
+				else if(action == 3) {
+					System.out.println("From Which Point ? (input must be like (x y) )");
+					int from_x = sc.nextInt();
+					int from_y = sc.nextInt();
+					
+					if (this.getCurrentPlayerTurn() == 1) {
+						game.displayValidMoves(this.player1,from_x,from_y);
+					} 
+					if(this.getCurrentPlayerTurn() == 2) {
+						game.displayValidMoves(this.player2,from_x,from_y);
+					}
+					
+					
+				}
+				
 				game.checkGameOver();
 
 			}
