@@ -8,7 +8,7 @@ public class Game {
 	private GameState gameState;
 	private Player winner = null;
 
-	private ArrayList<Point> currentValideMoves = null;
+	private ArrayList<Point> currentValidMoves = null;
 
 	public Game(Player player1, Player player2) {
 		// super();
@@ -26,7 +26,7 @@ public class Game {
 		this.board_game.init();
 	}
 
-	public Boolean ShingShangSeq() {
+	public Boolean shingShangSeq() {
 		return this.board_game.getShingShangSeq();
 	}
 
@@ -36,17 +36,17 @@ public class Game {
 
 	private void updateValidMoves(Player player, int x1, int y1) {
 
-		this.setCurrentValideMoves(null);
-		this.setCurrentValideMoves(this.board_game.getValidMoves(board_game.getPoints()[x1][y1].getPiece()));
+		this.setCurrentValidMoves(null);
+		this.setCurrentValidMoves(this.board_game.getValidMoves(board_game.getPoints()[x1][y1].getPiece()));
 
 	}
 
 	public ArrayList<Point> getCurrentValideMoves() {
-		return currentValideMoves;
+		return currentValidMoves;
 	}
 
-	public void setCurrentValideMoves(ArrayList<Point> currentValideMoves) {
-		this.currentValideMoves = currentValideMoves;
+	public void setCurrentValidMoves(ArrayList<Point> currentValideMoves) {
+		this.currentValidMoves = currentValideMoves;
 	}
 
 	public void displayValidMoves(Player player, int x1, int y1) {
@@ -62,9 +62,9 @@ public class Game {
 							+ "|  Possible move for current piece :   |\r\n"
 							+ "+--------------------------------------+\r\n");
 
-					for (int i = 0; i < currentValideMoves.size(); i++) {
-						System.out.println("Destination possible : [" + currentValideMoves.get(i).getN_row() + " "
-								+ currentValideMoves.get(i).getN_column() + "]");
+					for (int i = 0; i < currentValidMoves.size(); i++) {
+						System.out.println("Destination possible : [" + currentValidMoves.get(i).getN_row() + " "
+								+ currentValidMoves.get(i).getN_column() + "]");
 
 					}
 
@@ -84,7 +84,7 @@ public class Game {
 
 	}
 
-	public Boolean PlayerPlays(Player player, int x1, int y1, int x2, int y2) {
+	public Boolean playerPlays(Player player, int x1, int y1, int x2, int y2) {
 		// CHECK IF PIECE IS PLAYERS
 		// CHECK IF POINTS IS EMPTY, VALID
 		Boolean ret = false;
@@ -186,11 +186,11 @@ public class Game {
 		this.player2 = player2;
 	}
 
-	public BoardGame getBoard_game() {
+	public BoardGame getBoardGame() {
 		return board_game;
 	}
 
-	public void setBoard_game(BoardGame board_game) {
+	public void setBoardGame(BoardGame board_game) {
 		this.board_game = board_game;
 	}
 

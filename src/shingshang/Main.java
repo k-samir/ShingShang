@@ -13,7 +13,7 @@ public class Main {
 	GameGUI gameGui = new GameGUI(gameC);
 	gameC.setView(gameGui);
 		
-	//CREATE PLAYERS
+	//CREATE PLAYERS, temp import Player
 	Player player1 = new Player("SAMIR", "blue");
 	Player player2 = new Player("SAM", "red");
 	

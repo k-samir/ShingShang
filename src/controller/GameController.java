@@ -45,16 +45,16 @@ public class GameController {
 		this.currentPlayerTurn = currentPlayerTurn;
 	}
 
-	public Boolean Player1Move(int x1, int y1, int x2, int y2) {
+	public Boolean player1Move(int x1, int y1, int x2, int y2) {
 
-		Boolean ret = game.PlayerPlays(player1, x1, y1, x2, y2);
+		Boolean ret = game.playerPlays(player1, x1, y1, x2, y2);
 
 		return ret;
 	}
 
-	public Boolean Player2Move(int x1, int y1, int x2, int y2) {
+	public Boolean player2Move(int x1, int y1, int x2, int y2) {
 
-		Boolean ret = game.PlayerPlays(player2, x1, y1, x2, y2);
+		Boolean ret = game.playerPlays(player2, x1, y1, x2, y2);
 
 		return ret;
 	}
@@ -70,7 +70,7 @@ public class GameController {
 
 
 	
-	public Boolean WinnerExist() {
+	public Boolean winnerExist() {
 		//System.out.print(this.game.getWinner() != null);
 		return this.game.getWinner() != null;
 	}

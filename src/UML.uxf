@@ -1,33 +1,60 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>6</zoom_level>
+  <zoom_level>5</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>6</x>
-      <y>90</y>
-      <w>264</w>
-      <h>180</h>
+      <x>15</x>
+      <y>65</y>
+      <w>220</w>
+      <h>300</h>
     </coordinates>
     <panel_attributes>BoardGame
 --
-#ROW
-#COLUMN
 -pieces : ArrayList&lt;PieceSet&gt;
--points : ArrayList&lt;Point&gt;
+-points : Point[][]
+-colorJ1 : String
+-colorJ2 : String
+-moveValidator : MoveValidator
+-shingShangSeq : Boolean
+-shingShangPiece : Piece
 --
-+BoardGame(String colorJ1,String colorJ2):BoardGame
-+placePiece(piece:Piece,point : Point):void
-+movePiece(point1 : Point,point2 : Point):Boolean
-+removePiece(point : Point):void
-+getPieces(): ArrayList&lt;PieceSet&gt;
++BoardGame(colorJ1 : String,colorJ2:String):BoardGame
 +init():void
-+addDragon1(Integer x,Integer y):void
-+addDragon2(Integer x,Integer y):void
-+addLion1(Integer x,Integer y):void
-+addLion2(Integer x,Integer y):void
-+addMonkey1(Integer x,Integer y):void
-+addMonkey2(Integer x,Integer y):void
++addDragon1(x:Integer,y: Integer ):void
++addDragon2(x:Integer,y: Integer ):void
++addLion1(x:Integer,y: Integer ):void
++addLion2(x:Integer,y: Integer ):void
++addMonkey1(x:Integer,y: Integer ):void
++addMonkey2(x:Integer,y: Integer ):void
++getColorJ1():String
++getColorJ2():String
++setColorJ1(color:String):void
++setColorJ2(color:String):void
++getPieces(): ArrayList&lt;PieceSet&gt;
++setPieces(pieces:ArrayList&lt;PieceSet&gt;):void
++getPoints():Point[][]
++setPoints(points:Point[][]):void
+-movePiece(piece:Piece,point:Point):void
+-removePiece(point : Point):void
+-eatPiece(piece:Piece,point: Point):void
++placePiece(piece:Piece,point : Point):void
++getShingShangPiece():Piece
++setShingShangPiece(piece:Piece):void
+-getNeighbourPoint(piece:Piece,point : Point):Point
++getShingShangSeq():Boolean
++setShingShangSeq(bool:Boolean):void
++onPortalCheck(): Tuple&lt;Boolean,String&gt;
++noDragonCheck() : Tuple&lt;Boolean,String&gt;
++getValidMoves(piece:Piece): ArrayList&lt;Point&gt;
+
+
+
+
+
+
+
+
 
 
 </panel_attributes>
@@ -36,17 +63,18 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>378</x>
-      <y>480</y>
-      <w>126</w>
-      <h>78</h>
+      <x>385</x>
+      <y>475</y>
+      <w>105</w>
+      <h>65</h>
     </coordinates>
     <panel_attributes>Monkey
 --
-- type : String
-- size : Integer
-- pieceState : PieceState
-- position : Point
+-type : String
+-size : Integer
+-pieceState : PieceState
+-position : Point
+-color : String
 
 --
 
@@ -56,41 +84,45 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>630</x>
-      <y>126</y>
-      <w>126</w>
-      <h>60</h>
+      <x>695</x>
+      <y>95</y>
+      <w>90</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enumeration&gt;&gt;
 GameState
 --
-InGame
-EndGame
+INGAME
+ENDGAME
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>642</x>
-      <y>312</y>
-      <w>108</w>
-      <h>126</h>
+      <x>530</x>
+      <y>300</y>
+      <w>115</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 /Piece/
 --
-- type : String
-- size : Integer
-- pieceState : PieceState
-- position : Point
-- color : String
 
 --
 +getType():String
++setType(type : String):void
 +getSize():Integer
 +isDead():Boolean
 +valideMoves(): Point[]
++setSize(size:Integer):void
++getPieceState():PieceState
++setPieceState(state:String):void
++getPosition():Point
++setPosition(point:Point):void
++getColor():String
++killPiece():void
+
 
 
 
@@ -101,18 +133,18 @@ EndGame
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>636</x>
-      <y>510</y>
-      <w>126</w>
-      <h>78</h>
+      <x>665</x>
+      <y>475</y>
+      <w>105</w>
+      <h>65</h>
     </coordinates>
     <panel_attributes>Dragon
 --
-- type : String
-- size : Integer
-- pieceState : PieceState
-- position : Point
-
+-type : String
+-size : Integer
+-pieceState : PieceState
+-position : Point
+-color : String
 --
 
 </panel_attributes>
@@ -121,17 +153,18 @@ EndGame
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>504</x>
-      <y>504</y>
-      <w>126</w>
-      <h>78</h>
+      <x>525</x>
+      <y>475</y>
+      <w>105</w>
+      <h>65</h>
     </coordinates>
     <panel_attributes>Lion
 --
-- type : String
-- size : Integer
-- pieceState : PieceState
-- position : Point
+-type : String
+-size : Integer
+-pieceState : PieceState
+-position : Point
+-color : String
 
 --
 
@@ -141,43 +174,43 @@ EndGame
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
-      <y>432</y>
+      <x>580</x>
+      <y>435</y>
+      <w>15</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>460</x>
+      <y>435</y>
       <w>120</w>
-      <h>84</h>
+      <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>180.0;10.0;10.0;120.0</additional_attributes>
+    <additional_attributes>220.0;10.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>468</x>
-      <y>432</y>
-      <w>204</w>
-      <h>60</h>
+      <x>595</x>
+      <y>435</y>
+      <w>130</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>320.0;10.0;10.0;80.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>690</x>
-      <y>432</y>
-      <w>18</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+    <additional_attributes>10.0;10.0;240.0;80.0</additional_attributes>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>786</x>
-      <y>72</y>
-      <w>228</w>
-      <h>246</h>
+      <x>845</x>
+      <y>75</y>
+      <w>210</w>
+      <h>205</h>
     </coordinates>
     <panel_attributes>View
 --
@@ -187,10 +220,10 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>786</x>
-      <y>324</y>
-      <w>228</w>
-      <h>240</h>
+      <x>845</x>
+      <y>300</y>
+      <w>205</w>
+      <h>230</h>
     </coordinates>
     <panel_attributes>Controller
 --
@@ -200,141 +233,185 @@ bg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>798</x>
-      <y>366</y>
-      <w>216</w>
-      <h>120</h>
+      <x>860</x>
+      <y>330</y>
+      <w>180</w>
+      <h>175</h>
     </coordinates>
     <panel_attributes>GameController
 --
-- game:Game
-- player1,player2 : Player
-- currentPlayerTurn : Player
+-game:Game
+-player1,player2 : Player
+-currentPlayerTurn : Player
+-view : GameGUI
 --
-+ createTheGame(player1 : Player, player2 : Player):void
-+ startTheGame():void
-+ annouceWinner():void
-+ player1Move(piece : Piece,point : Point) : void
-+ player2Move(piece : Piece,point : Point) : void
-+ switchPlayer():void
-+isWinner():Boolean
++createTheGame(player1 : Player, player2 : Player):void
++setView(view:GameGUI):void
++startTheGame():void
++getCurrentPlayerTurn():Integer
++setCurrentPlayerTurn(playerTurn : Integer):void
++player1Move(piece : Piece,point : Point) : void
++player2Move(piece : Piece,point : Point) : void
++switchPlayer():void
++winnerExist():Boolean
++getPlayer1():Player
++getPlayer2(): Player
++setPlayer1(player:Player): void
++setPlayer2(player:Player): void
++getGame():Game
++setGame(game : Game):void
+
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>15</x>
+      <y>415</y>
+      <w>150</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>Point
+--
+-n_row : Integer
+-n_column : Integer
+-point_type : PointType
+-piece : Piece
+--
++Point(x:Integer,y:Integer, point_type : String)
++isUsed() : Boolean
++isUsable() : Boolean
++getPiece() : Piece
++setPiece(piece:Piece): void
++getN_row():Integer
++getN_column() : Integer
++getPointType(): String
++equals(Point : point) : Boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>185</x>
+      <y>560</y>
+      <w>285</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>MoveValidator
+--
+-jumpType : String
+--
++moveValid(piece : Piece, point_to : Point, all_points : Point[][]):Tuple&lt;Boolean,String&gt;
++getValidMoves(piece : Piece, points : Point[][]&gt;): ArrayList&lt;Point&gt;
+-hasNeighbour(piece : Piece, point_to : Point,all_points : Point[][]):Boolean
+-getNeighbourSize(piece : Piece,x : Integer,y : Integer,all_points : Point[][]):Integer
+-canJump(piece : Piece, point_to : Point,all_points : Point[][]):Boolean
+-isInBigStar(piece : Piece, point_to : Point,all_points : Point[][]):Boolean
+-isInStar(piece : Piece, point_to : Point,all_points : Point[][]):Boolean
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>6</x>
-      <y>306</y>
-      <w>180</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>Point
---
-- n_row : Integer
-- n_column : Integer
-- point_type : PointType
-- piece : Piece
---
-+ Point(x:Integer,y:Integer, point_type : String)
-+ isUsed() : Boolean
-+ getPointType(): String</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>90</x>
-      <y>516</y>
-      <w>270</w>
-      <h>78</h>
-    </coordinates>
-    <panel_attributes>MoveValidator
---
-
-
---
-+ moveValid(piece : Piece, point_to : Point):Boolean
-+ getValidMoves(piece : Piece, points :ArrayList&lt;Point&gt;): ArrayList&lt;Point&gt;</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>600</x>
-      <y>216</y>
-      <w>168</w>
-      <h>54</h>
+      <x>670</x>
+      <y>175</y>
+      <w>140</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>Player
 --
-- name : String
-- color : String
+-name : String
+-color : String
 
 --
 
++Player(name:String,color:String)
++getName():String
++setName(name:String):void
++getColor():String
++setColor(color:String):void
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>576</x>
-      <y>144</y>
-      <w>66</w>
-      <h>18</h>
+      <x>515</x>
+      <y>105</y>
+      <w>190</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>360.0;20.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>438</x>
-      <y>354</y>
-      <w>126</w>
-      <h>60</h>
+      <x>690</x>
+      <y>350</y>
+      <w>105</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enumeration&gt;&gt;
 PieceState
 --
-Alive
-Dead
-Nothing
+ALIVE
+DEAD
+NOTHING
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>558</x>
-      <y>336</y>
-      <w>96</w>
-      <h>54</h>
+      <x>640</x>
+      <y>370</y>
+      <w>60</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;70.0;140.0;10.0</additional_attributes>
+    <additional_attributes>100.0;10.0;10.0;30.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>306</x>
-      <y>102</y>
-      <w>276</w>
-      <h>120</h>
+      <x>290</x>
+      <y>70</y>
+      <w>230</w>
+      <h>230</h>
     </coordinates>
     <panel_attributes>Game
 --
-- player1,player2 : Player
-- board_game : BoardGame
-- gameState : GameState
+-player1,player2 : Player
+-board_game : BoardGame
+-gameState : GameState
+-winner : Player
+-currentValidMoves : ArrayList&lt;Point&gt;
 
 --
-+ Game(player1:Player,player2:Player):Game
-+ getGameState(): GameState
-+ setupBoard():void
-+ playerPlays(player:Player,piece : Piece, to_point : Point):Boolean
-
++Game(player1:Player,player2:Player):Game
++setupBoard():void
++shingShangSeq():Boolean
++setShingShangSeq(bool : Boolean):void
+-updateValidMoves(player:Player ,x1: Integer,x2:Integer):void
++getCurrentValideMoves():ArrayList&lt;Point&gt;
++setCurrentValideMoves(validMoves:ArrayList&lt;Point&gt;):void
++displayValidMoves(player:Player,x:Integer,y:Integer):void
++playerPlays(player:Player,piece:Piece,to_point:Point):Boolean
++checkGameOver() :void
++getWinner() : Player
++setWinner(player:Player):void
++getPlayer1():Player
++setPlayer1(player:Player):void
++getPlayer2():Player
++setPlayer2(player:Player):void
++getBoardGame():BoardGame
++setBoardGame(boardGame:BoardGame):void
++getGameState(): GameState
++setGameState(gameState:GameState):void
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -342,9 +419,9 @@ Nothing
     <id>UMLPackage</id>
     <coordinates>
       <x>0</x>
-      <y>60</y>
-      <w>780</w>
-      <h>540</h>
+      <y>40</y>
+      <w>825</w>
+      <h>630</h>
     </coordinates>
     <panel_attributes>Model
 --
@@ -354,17 +431,22 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>816</x>
-      <y>150</y>
-      <w>120</w>
-      <h>72</h>
+      <x>855</x>
+      <y>125</y>
+      <w>185</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>GameGUI
 --
-
+-gameC : GameController
 --
-+ init():void
-+ Update():void
++GameGUI(gameC : GameController):GameGUI
++createTheGame(player1 : Player,player2 : Player):void
++startTheGame():void
++displayBoard():void
+-nextTurn(sc : Scanner):void
+-announceWinner():void
+
 
 </panel_attributes>
     <additional_attributes/>
@@ -372,148 +454,258 @@ bg=orange</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>444</x>
-      <y>216</y>
-      <w>366</w>
-      <h>192</h>
+      <x>515</x>
+      <y>260</y>
+      <w>355</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;120.0;530.0;150.0;530.0;300.0;590.0;300.0</additional_attributes>
+    <additional_attributes>10.0;10.0;460.0;100.0;690.0;190.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>876</x>
-      <y>216</y>
-      <w>36</w>
-      <h>162</h>
+      <x>935</x>
+      <y>210</y>
+      <w>15</w>
+      <h>130</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>40.0;10.0;10.0;250.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;240.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>294</x>
-      <y>288</y>
-      <w>108</w>
-      <h>60</h>
+      <x>320</x>
+      <y>330</y>
+      <w>150</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>/PieceSet/
 --
-- pieces : ArrayList&lt;Piece&gt;
-- color : String
+-pieces : ArrayList&lt;Piece&gt;
+-color : String
 --
++PieceSet(color : String)
++getPieces() : ArrayList&lt;Piece&gt;
++setPieces(pieces : ArrayList&lt;Piece&gt;):void
++getColor(): String
++setColor(color:String):void
++addPiece(piece:Piece):void
 
 
 
 
 
-</panel_attributes>
+
+layer=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>396</x>
-      <y>312</y>
-      <w>258</w>
-      <h>36</h>
+      <x>465</x>
+      <y>365</y>
+      <w>75</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=12
 </panel_attributes>
-    <additional_attributes>10.0;10.0;410.0;30.0</additional_attributes>
+    <additional_attributes>10.0;10.0;130.0;30.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>228</x>
-      <y>264</y>
-      <w>120</w>
-      <h>126</h>
+      <x>230</x>
+      <y>330</y>
+      <w>100</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=2
 </panel_attributes>
-    <additional_attributes>10.0;10.0;60.0;190.0;170.0;190.0;170.0;140.0</additional_attributes>
+    <additional_attributes>10.0;10.0;180.0;50.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>48</x>
-      <y>264</y>
-      <w>36</w>
-      <h>54</h>
+      <x>55</x>
+      <y>360</y>
+      <w>25</w>
+      <h>65</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=100
 </panel_attributes>
-    <additional_attributes>10.0;10.0;20.0;70.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>510</x>
-      <y>216</y>
-      <w>102</w>
-      <h>60</h>
+      <x>515</x>
+      <y>145</y>
+      <w>165</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=2
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0;150.0;70.0</additional_attributes>
+    <additional_attributes>10.0;10.0;310.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>264</x>
-      <y>132</y>
-      <w>54</w>
-      <h>18</h>
+      <x>230</x>
+      <y>125</y>
+      <w>70</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>150</x>
-      <y>264</y>
-      <w>60</w>
-      <h>264</h>
+      <x>135</x>
+      <y>360</y>
+      <w>75</w>
+      <h>210</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>50.0;420.0;80.0;50.0;10.0;10.0</additional_attributes>
+    <additional_attributes>130.0;400.0;130.0;70.0;10.0;70.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>12</x>
-      <y>438</y>
-      <w>126</w>
-      <h>60</h>
+      <x>15</x>
+      <y>585</y>
+      <w>105</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enumeration&gt;&gt;
 PointType
 --
-Portal
-Standard</panel_attributes>
+PORTAL
+STANDARD
+NOTHING
+layer=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>54</x>
-      <y>390</y>
-      <w>24</w>
-      <h>60</h>
+      <x>55</x>
+      <y>540</y>
+      <w>15</w>
+      <h>55</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>20.0;80.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>605</x>
+      <y>560</y>
+      <w>120</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>Tuple&lt;S1,S2&gt;
+--
+-first : Boolean
+-second:String
+--
++Tuple(bool:Boolea,str :String)
++getFirst():Boolean
++getSecond():String
++setFirst(bool:Boolean):void
++setSecond(str:String):void
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>915</x>
+      <y>585</y>
+      <w>80</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Main
+--
+
+--
+_+main(String[]):void_
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>465</x>
+      <y>600</y>
+      <w>150</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+use</panel_attributes>
+    <additional_attributes>10.0;20.0;280.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>210</x>
+      <y>360</y>
+      <w>405</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+use</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;380.0;600.0;380.0;600.0;430.0;790.0;430.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>950</x>
+      <y>500</y>
+      <w>35</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+import</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>970</x>
+      <y>210</y>
+      <w>105</w>
+      <h>415</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+import</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0;190.0;70.0;190.0;770.0;50.0;810.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>845</x>
+      <y>545</y>
+      <w>205</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Shingshang
+--
+bg=green
+layer=-1</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

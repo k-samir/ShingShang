@@ -64,10 +64,10 @@ public class GameGUI {
 				}
 
 				if (gameC.getCurrentPlayerTurn() == 1) {
-					move = gameC.Player1Move(from_x, from_y, to_x, to_y);
+					move = gameC.player1Move(from_x, from_y, to_x, to_y);
 				} 
 				if(gameC.getCurrentPlayerTurn() == 2) {
-					move = gameC.Player2Move(from_x, from_y, to_x, to_y);
+					move = gameC.player2Move(from_x, from_y, to_x, to_y);
 				}
 
 			}
@@ -101,7 +101,7 @@ public class GameGUI {
 			gameC.getGame().checkGameOver();
 
 		}
-		if (!gameC.getGame().ShingShangSeq()) {
+		if (!gameC.getGame().shingShangSeq()) {
 
 			gameC.switchPlayer();
 			
@@ -125,7 +125,7 @@ public class GameGUI {
 		 
 		gameC.startTheGame();
 		
-		while(!gameC.WinnerExist()) {
+		while(!gameC.winnerExist()) {
 			nextTurn(sc);
 		}
 		
@@ -151,23 +151,23 @@ public class GameGUI {
 
 				}
 
-				if (gameC.getGame().getBoard_game().getPoints()[i][j].getPoint_type().toString() == "PORTAL"
-						&& gameC.getGame().getBoard_game().getPoints()[i][j].getPiece() == null) {
+				if (gameC.getGame().getBoardGame().getPoints()[i][j].getPointType().toString() == "PORTAL"
+						&& gameC.getGame().getBoardGame().getPoints()[i][j].getPiece() == null) {
 					System.out.print(" [ P ] ");
 
-				} else if ((gameC.getGame().getBoard_game().getPoints()[i][j].getPiece() != null)
-						&& (!gameC.getGame().getBoard_game().getPoints()[i][j].getPiece().isDead())) {
-					if (gameC.getGame().getBoard_game().getPoints()[i][j].getPiece().getType() == "Monkey") {
+				} else if ((gameC.getGame().getBoardGame().getPoints()[i][j].getPiece() != null)
+						&& (!gameC.getGame().getBoardGame().getPoints()[i][j].getPiece().isDead())) {
+					if (gameC.getGame().getBoardGame().getPoints()[i][j].getPiece().getType() == "Monkey") {
 						System.out.print(" [ M ] ");
 					}
-					if (gameC.getGame().getBoard_game().getPoints()[i][j].getPiece().getType() == "Lion") {
+					if (gameC.getGame().getBoardGame().getPoints()[i][j].getPiece().getType() == "Lion") {
 						System.out.print(" [ L ] ");
 					}
-					if (gameC.getGame().getBoard_game().getPoints()[i][j].getPiece().getType() == "Dragon") {
+					if (gameC.getGame().getBoardGame().getPoints()[i][j].getPiece().getType() == "Dragon") {
 						System.out.print(" [ D ] ");
 					}
 
-				} else if (gameC.getGame().getBoard_game().getPoints()[i][j].getPoint_type().toString() == "NOTHING") {
+				} else if (gameC.getGame().getBoardGame().getPoints()[i][j].getPointType().toString() == "NOTHING") {
 					System.out.print(" [   ] ");
 				} else {
 					System.out.print(" [" + i + " " + j + "] ");

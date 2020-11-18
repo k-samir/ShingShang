@@ -50,7 +50,7 @@ public class Point {
 		return n_column;
 	}
 
-	public PointType getPoint_type() {
+	public PointType getPointType() {
 		return point_type;
 	}
 	
