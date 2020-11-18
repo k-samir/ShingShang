@@ -12,10 +12,8 @@ public class GameGUI {
 	public GameGUI(GameController gameC) {
 		this.gameC = gameC;
 	}
-	public void init() {}
-	public void Update() {}
 	
-	public void annouceWinner() {
+	private void annouceWinner() {
 		if(gameC.getGame().getWinner() != null) {
 		System.out.println("\n" + gameC.getGame().getWinner().getName() + " wins");
 		}
@@ -33,7 +31,7 @@ public class GameGUI {
 	}
 
 	
-	public void nextTurn(Scanner sc) {
+	private void nextTurn(Scanner sc) {
 
 		Boolean move = false;
 		System.out.println("\n ---- Player " + gameC.getCurrentPlayerTurn() + "'s turn : ---- ");
@@ -46,11 +44,24 @@ public class GameGUI {
 			// MOVING
 			if (action == 1) {
 				System.out.println("From Which Point ? (input must be like (x y) )");
+				
 				int from_x = sc.nextInt();
 				int from_y = sc.nextInt();
+				
+				while(from_x > 9|| from_y > 9) {
+					System.out.println("x or y is too big , try again ( x & y must be lower than 10 )");
+					from_x = sc.nextInt();
+					from_y = sc.nextInt();
+				}
 				System.out.println("To you which Point ? (input must be like (x y) )");
 				int to_x = sc.nextInt();
 				int to_y = sc.nextInt();
+				
+				while(to_x > 9|| to_y > 9) {
+					System.out.println("x or y is too big , try again ( x & y must be lower than 10 )");
+					to_x = sc.nextInt();
+					to_y = sc.nextInt();
+				}
 
 				if (gameC.getCurrentPlayerTurn() == 1) {
 					move = gameC.Player1Move(from_x, from_y, to_x, to_y);
@@ -70,6 +81,12 @@ public class GameGUI {
 				System.out.println("From Which Point ? (input must be like (x y) )");
 				int from_x = sc.nextInt();
 				int from_y = sc.nextInt();
+				
+				while(from_x > 9|| from_y > 9) {
+					System.out.println("x or y is too big , try again ( x & y must be lower than 10 )");
+					from_x = sc.nextInt();
+					from_y = sc.nextInt();
+				}
 				
 				if (gameC.getCurrentPlayerTurn() == 1) {
 					gameC.getGame().displayValidMoves(gameC.getPlayer1(),from_x,from_y);

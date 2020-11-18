@@ -15,7 +15,7 @@ public class BoardGame {
 
 	private MoveValidator moveValidator;
 
-	public Boolean shingShangSeq = false;
+	private Boolean shingShangSeq = false;
 	private Piece shingShangPiece = null;
 
 	public BoardGame(String colorJ1, String colorJ2) {
@@ -170,17 +170,17 @@ public class BoardGame {
 		this.points = points;
 	}
 
-	public void movePiece(Piece piece, Point to_point) {
+	private void movePiece(Piece piece, Point to_point) {
 		removePiece(piece.getPosition());
 		piece.setPosition(to_point);
 		this.getPoints()[to_point.getN_row()][to_point.getN_column()].setPiece(piece);
 	}
 
-	public void removePiece(Point point) {
+	private void removePiece(Point point) {
 		point.setPiece(null);
 	}
 
-	public void eatPiece(Piece piece, Point point) {
+	private void eatPiece(Piece piece, Point point) {
 
 		System.out.println(piece.getType() + " of Player " + piece.getColor() + " jump over : "
 				+ point.getPiece().getType() + " of Player " + point.getPiece().getColor() + " and catches him.");
@@ -243,7 +243,7 @@ public class BoardGame {
 		this.shingShangPiece = shingShangPiece;
 	}
 
-	public Point getNeighbourPoint(Piece piece, Point point_to) {
+	private Point getNeighbourPoint(Piece piece, Point point_to) {
 
 		Point[][] all_points = getPoints();
 		Point ret = null;

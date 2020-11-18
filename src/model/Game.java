@@ -34,7 +34,7 @@ public class Game {
 		this.board_game.setShingShangSeq(bool);
 	}
 
-	public void updateValidMoves(Player player, int x1, int y1) {
+	private void updateValidMoves(Player player, int x1, int y1) {
 
 		this.setCurrentValideMoves(null);
 		this.setCurrentValideMoves(this.board_game.getValidMoves(board_game.getPoints()[x1][y1].getPiece()));

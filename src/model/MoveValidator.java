@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 public class MoveValidator {
 
-	String jumpType = "";
+	private String jumpType = "";
+	
 	public Tuple<Boolean, String> moveValid(Piece piece, Point point_to, Point[][] all_points) {
 
 		
@@ -51,7 +52,7 @@ public class MoveValidator {
 	
 
 
-	public Boolean hasNeighbour(Piece piece, Point point_to, Point[][] all_points) {
+	private Boolean hasNeighbour(Piece piece, Point point_to, Point[][] all_points) {
 		Boolean ret = false;
 
 		int x = piece.getPosition().getN_row();
@@ -170,7 +171,7 @@ public class MoveValidator {
 
 	}
 
-	public Integer getNeighbourSize(Piece piece,Integer x, Integer y, Point[][] all_points) {
+	private Integer getNeighbourSize(Piece piece,Integer x, Integer y, Point[][] all_points) {
 		if(all_points[x][y].getPiece().getColor() == piece.getColor()) {
 			jumpType = "AllyJump";
 		}
@@ -181,7 +182,7 @@ public class MoveValidator {
 		return all_points[x][y].getPiece().getSize();
 	}
 
-	public Boolean canJump(Piece piece, Point point_to, Point[][] all_points) {
+	private Boolean canJump(Piece piece, Point point_to, Point[][] all_points) {
 
 		Boolean canJump = false;
 
@@ -334,7 +335,7 @@ public class MoveValidator {
 
 
 
-	public Boolean isInBigStar(Piece piece, Point point_to, Point[][] all_points) {
+	private Boolean isInBigStar(Piece piece, Point point_to, Point[][] all_points) {
 		Boolean verification = false;
 
 		int stop_X = piece.getPosition().getN_row() + 3;
@@ -382,7 +383,7 @@ public class MoveValidator {
 		return verification;
 	}
 
-	public Boolean isInStar(Piece piece, Point point_to, Point[][] all_points) {
+	private Boolean isInStar(Piece piece, Point point_to, Point[][] all_points) {
 		Boolean verification = false;
 
 		int stop_X = piece.getPosition().getN_row() + 2;

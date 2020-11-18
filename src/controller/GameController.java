@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.Scanner;
 
 import model.Game;
 
