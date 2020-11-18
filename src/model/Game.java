@@ -93,15 +93,16 @@ public class Game {
 		if (board_game.getPoints()[x2][y2].isUsable()) {
 			if (board_game.getPoints()[x1][y1].isUsed()) {
 				if (board_game.getPoints()[x2][y2].getPiece() == null) {
+					
 					if (board_game.getPoints()[x1][y1].getPiece().getColor() == player.getColor()) {
-						System.out.println(board_game.getPoints()[x1][y1].getPiece().getColor());
+						
 
 						// UPDATE ALL CURRENT MOVES AVAILABLE FOR PIECES IN currentValideMoves
 						updateValidMoves(player, x1, y1);
 
 						ret = this.board_game.placePiece(board_game.getPoints()[x1][y1].getPiece(),
 								board_game.getPoints()[x2][y2]);
-						// CHECK COLOR OF PIECE TO FUTURE IHM
+						
 
 					} else {
 						System.out.println("The Piece is not yours, try again");
@@ -117,6 +118,12 @@ public class Game {
 		} else {
 			ret = false;
 			System.out.println("The Destination Point is outside the board, try again");
+		}
+		
+		if(ret) {
+			//System.out.println();
+			System.out.println("\n" + board_game.getPoints()[x2][y2].getPiece().getColor() + " : ["+x1 + ","+ y1 +"] to [" + x2 + "," +  y2+"]\n");
+			
 		}
 
 		return ret;

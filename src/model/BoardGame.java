@@ -70,8 +70,8 @@ public class BoardGame {
 		this.getPoints()[4][9] = new Point(4, 9, "Standard");
 		this.getPoints()[5][9] = new Point(5, 9, "Standard");
 
-		this.addDragon1(0, 1);
-		this.addDragon1(0, 8);
+		//this.addDragon1(0, 1);
+		//this.addDragon1(0, 8);
 		this.addLion1(0, 2);
 		this.addLion1(1, 1);
 		this.addLion1(1, 8);
@@ -83,8 +83,8 @@ public class BoardGame {
 		this.addMonkey1(2, 1);
 		this.addMonkey1(2, 8);
 
-		this.addDragon2(9, 1);
-		this.addDragon2(9, 8);
+	//	this.addDragon2(9, 1);
+	//	this.addDragon2(9, 8);
 		this.addLion2(8, 1);
 		this.addLion2(9, 2);
 		this.addLion2(9, 7);
@@ -97,11 +97,11 @@ public class BoardGame {
 		this.addMonkey2(7, 8);
 
 		// TESTING PIECES
-		this.addDragon1(6, 4);
-		this.addMonkey1(7, 4);
+		this.addDragon1(4, 6);
+		//this.addMonkey1(7, 4);
 
-		this.addDragon2(4, 4);
-		this.addMonkey2(4, 6);
+		this.addDragon2(4, 5);
+		//this.addMonkey2(4, 6);
 
 	}
 
@@ -182,8 +182,8 @@ public class BoardGame {
 
 	public void eatPiece(Piece piece, Point point) {
 
-		System.out.println(piece.getType() + " du joueur " + piece.getColor() + " saute par dessus : "
-				+ point.getPiece().getType() + " du joueur " + point.getPiece().getColor() + " et l'attrape.");
+		System.out.println(piece.getType() + " of Player " + piece.getColor() + " jump over : "
+				+ point.getPiece().getType() + " of Player " + point.getPiece().getColor() + " and catches him.");
 
 		point.getPiece().killPiece();
 		removePiece(point);
@@ -207,15 +207,15 @@ public class BoardGame {
 				setShingShangPiece(null);
 
 				if (moveData.getSecond() == "EnnemyJump") {
-					System.out.println("SHING-SHANG");
+					System.out.println("SHING-SHANG you have 1 extra turn with another piece !");
 					this.shingShangSeq = true;
 					this.shingShangPiece = piece;
 
 					eatPiece(piece, getNeighbourPoint(piece, point));
-
 					movePiece(piece, point);
 
 				} else if (moveData.getSecond() == "AllyJump") {
+					System.out.println("SHING-SHANG you have 1 extra turn !");
 					this.shingShangSeq = true;
 					movePiece(piece, point);
 				}

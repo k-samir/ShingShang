@@ -41,7 +41,7 @@ public class GameController {
 
 	public void annouceWinner() {
 		if(game.getWinner() != null) {
-		System.out.println(game.getWinner().getName() + " wins");
+		System.out.println("\n" + game.getWinner().getName() + " wins");
 		}
 	
 	}
