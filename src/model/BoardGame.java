@@ -209,14 +209,14 @@ public class BoardGame {
 				if (moveData.getSecond() == "EnnemyJump") {
 					System.out.println("SHING-SHANG you have 1 extra turn with another piece !");
 					this.shingShangSeq = true;
-					this.shingShangPiece = piece;
+					setShingShangPiece(piece);
 
 					eatPiece(piece, getNeighbourPoint(piece, point));
 					movePiece(piece, point);
 
 				} else if (moveData.getSecond() == "AllyJump") {
 					System.out.println("SHING-SHANG you have 1 extra turn !");
-					this.shingShangSeq = true;
+					shingShangSeq = true;
 					movePiece(piece, point);
 				}
 

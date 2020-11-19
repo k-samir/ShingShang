@@ -3,6 +3,7 @@ package view;
 import java.util.Scanner;
 
 import controller.GameController;
+import model.PieceState;
 import model.Player;
 
 public class GameGUI {
@@ -157,13 +158,16 @@ public class GameGUI {
 
 				} else if ((gameC.getGame().getBoardGame().getPoints()[i][j].getPiece() != null)
 						&& (!gameC.getGame().getBoardGame().getPoints()[i][j].getPiece().isDead())) {
-					if (gameC.getGame().getBoardGame().getPoints()[i][j].getPiece().getType() == "Monkey") {
+					if (gameC.getGame().getBoardGame().getPoints()[i][j].getPiece().getType() == "Monkey" &&
+							gameC.getGame().getBoardGame().getPoints()[i][j].getPiece().getPieceState() == PieceState.ALIVE	) {
 						System.out.print(" [ M ] ");
 					}
-					if (gameC.getGame().getBoardGame().getPoints()[i][j].getPiece().getType() == "Lion") {
+					if (gameC.getGame().getBoardGame().getPoints()[i][j].getPiece().getType() == "Lion" &&
+							gameC.getGame().getBoardGame().getPoints()[i][j].getPiece().getPieceState() == PieceState.ALIVE	) {
 						System.out.print(" [ L ] ");
 					}
-					if (gameC.getGame().getBoardGame().getPoints()[i][j].getPiece().getType() == "Dragon") {
+					if (gameC.getGame().getBoardGame().getPoints()[i][j].getPiece().getType() == "Dragon" &&
+							gameC.getGame().getBoardGame().getPoints()[i][j].getPiece().getPieceState() == PieceState.ALIVE	) {
 						System.out.print(" [ D ] ");
 					}
 
