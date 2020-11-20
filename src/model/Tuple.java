@@ -1,5 +1,12 @@
 package model;
 
+
+/**
+ * Tuple<S1, S2> class : structure created to return a boolean and a string at the same time
+ * used in MoveValidator for exemple 
+ * @author Samir KAMAR
+ *
+ */
 public class Tuple<S1, S2> {
 	
 	  private Boolean first;

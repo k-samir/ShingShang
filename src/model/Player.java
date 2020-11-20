@@ -1,5 +1,12 @@
 package model;
 
+
+/**
+ * Player class : represent the Player
+ * 
+ * @author Samir KAMAR
+ *
+ */
 public class Player {
 	
 	private String name;

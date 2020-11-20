@@ -2,6 +2,13 @@ package model;
 
 import java.util.ArrayList;
 
+
+/**
+ * PieceSet class : each PieceSet represent a list of one player's pieces
+ * 
+ * @author Samir KAMAR
+ *
+ */
 public class PieceSet {
 	private ArrayList<Piece> pieces;
 	private String color;

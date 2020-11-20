@@ -1,5 +1,13 @@
 package model;
 
+
+/**
+ * Point class : represent the point in the boardgame ( a cell ) there is 84 playable cells in this game 
+ * (100 cells in total)
+ * 
+ * @author Samir KAMAR
+ *
+ */
 public class Point {
 
 	private Integer n_row;
@@ -29,6 +37,7 @@ public class Point {
 		return (piece != null);
 	}
 	
+	/** Check if point is not outside the board  */
 	public Boolean isUsable() {
 		return(point_type != PointType.NOTHING);
 	}
@@ -60,17 +69,6 @@ public class Point {
 			
 		
 	}
-//
-//	public void setPoint_type(String point_type) {
-//		if (point_type.equals("Portal")) {
-//			this.point_type = PointType.PORTAL;
-//
-//		} else if (point_type.equals("Standard")) {
-//			this.point_type = PointType.STANDARD;
-//
-//		} else {
-//			this.point_type = PointType.NOTHING;
-//		}
-//	}
+
 
 }

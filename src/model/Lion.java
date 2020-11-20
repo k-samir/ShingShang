@@ -1,5 +1,13 @@
 package model;
 
+
+/**
+ * Lion class : represent the Lion Piece
+ * 
+ * @author Samir KAMAR
+ *
+ */
+
 public class Lion implements Piece {
 
 	private String type;

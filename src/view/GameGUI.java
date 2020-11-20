@@ -6,6 +6,11 @@ import controller.GameController;
 import model.PieceState;
 import model.Player;
 
+/**
+ * GameGUI class : graphical user interface displays the board to the user
+ * @author Samir KAMAR
+ *
+ */
 public class GameGUI {
 	
 	private GameController gameC;
@@ -90,10 +95,10 @@ public class GameGUI {
 				}
 				
 				if (gameC.getCurrentPlayerTurn() == 1) {
-					gameC.getGame().displayValidMoves(gameC.getPlayer1(),from_x,from_y);
+					displayValidMoves(gameC.getPlayer1(),from_x,from_y);
 				} 
 				if(gameC.getCurrentPlayerTurn() == 2) {
-					gameC.getGame().displayValidMoves(gameC.getPlayer2(),from_x,from_y);
+					displayValidMoves(gameC.getPlayer2(),from_x,from_y);
 				}
 				
 				
@@ -109,6 +114,42 @@ public class GameGUI {
 		}
 
 		displayBoardGame();
+	}
+	
+	
+	public void displayValidMoves(Player player, int x1, int y1) {
+
+		System.out.println("\n");
+		if (gameC.getGame().getBoardGame().getPoints()[x1][y1].getPiece() != null) {
+			if (gameC.getGame().getBoardGame().getShingShangPiece() != gameC.getGame().getBoardGame().getPoints()[x1][y1].getPiece()) {
+				if (gameC.getGame().getBoardGame().getPoints()[x1][y1].getPiece().getColor() == player.getColor()) {
+
+					gameC.getGame().updateValidMoves(player, x1, y1);
+
+					System.out.println("+--------------------------------------+\r\n"
+							+ "|  Possible move for current piece :   |\r\n"
+							+ "+--------------------------------------+\r\n");
+
+					for (int i = 0; i < gameC.getGame().getCurrentValideMoves().size(); i++) {
+						System.out.println("Destination possible : [" + gameC.getGame().getCurrentValideMoves().get(i).getN_row() + " "
+								+ gameC.getGame().getCurrentValideMoves().get(i).getN_column() + "]");
+
+					}
+
+				} else {
+					System.out.println("The Piece is not yours, try again");
+				}
+			}
+			else {
+				System.out.println("The Piece was used in last Shing Shang, try another piece");
+			}
+		}
+		else {
+			System.out.println("There is no Piece on the initial Point, try again");
+		}
+
+		System.out.println("\n");
+
 	}
 	
 	

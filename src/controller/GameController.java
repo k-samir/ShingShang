@@ -6,6 +6,13 @@ import model.Game;
 import model.Player;
 import view.GameGUI;
 
+/**
+ * GameController class that make the link between the view and models class
+ *
+ * @author Samir KAMAR
+ *
+ */
+
 
 public class GameController {
 
@@ -27,6 +34,7 @@ public class GameController {
 	}
 
 
+	/** Method start the game, setup the board, set the current player and displays the board */
 	public void startTheGame() {
 		game.setupBoard();
 		// YOU CAN CHANGE THE FIRST PLAYER TO START
@@ -59,6 +67,7 @@ public class GameController {
 		return ret;
 	}
 
+	/** Switch players turn */
 	public void switchPlayer() {
 		if (currentPlayerTurn == 1) {
 			currentPlayerTurn = 2;
@@ -69,7 +78,7 @@ public class GameController {
 	}
 
 
-	
+	/**  Check if there is a winner */
 	public Boolean winnerExist() {
 		//System.out.print(this.game.getWinner() != null);
 		return this.game.getWinner() != null;

@@ -2,10 +2,15 @@ package model;
 
 import java.util.ArrayList;
 
-public class BoardGame {
+/**
+ * BoardGame class : represent the board of the game and various methods
+ * 
+ * @author Samir KAMAR
+ *
+ */
 
-	//private final int ROW = 10;
-	//private final int COLUMN = 10;
+
+public class BoardGame {
 
 	private ArrayList<PieceSet> pieces;
 	private Point[][] points;
@@ -32,15 +37,15 @@ public class BoardGame {
 
 		moveValidator = new MoveValidator();
 
-		// MODIFIEER POUR APPEL DANS GAME
-		// this.init();
 
 	}
 
+	/**  This method, init the boardgame, create all the point (cells) of the board, and add all the piece
+	 * in their specific position
+	 * */
 	public void init() {
 
-		//System.out.println("INIT...");
-
+		
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 
@@ -62,8 +67,7 @@ public class BoardGame {
 			}
 		}
 
-		// ADDING POINT O,4 - 0,5 - 4,9 -- 5,9
-		// FOUR SIDE POINT ON THE BOARD
+
 		this.getPoints()[4][0] = new Point(4, 0, "Standard");
 		this.getPoints()[5][0] = new Point(5, 0, "Standard");
 
@@ -154,6 +158,7 @@ public class BoardGame {
 		this.colorJ2 = colorJ2;
 	}
 
+	/**  Get all the pieces on the board */
 	public ArrayList<PieceSet> getPieces() {
 		return pieces;
 	}
@@ -162,6 +167,7 @@ public class BoardGame {
 		this.pieces = pieces;
 	}
 
+	/**  Get all the points of the board */
 	public Point[][] getPoints() {
 		return points;
 	}
@@ -180,6 +186,9 @@ public class BoardGame {
 		point.setPiece(null);
 	}
 
+	/** this method eats a piece from a point, piece is the eater and point is the position of 
+	 * the dead piece 
+	 *  */
 	private void eatPiece(Piece piece, Point point) {
 
 		System.out.println(piece.getType() + " of Player " + piece.getColor() + " jump over : "
@@ -190,6 +199,9 @@ public class BoardGame {
 
 	}
 
+	/**  Method to check if the play is ok , check if the piece is not the current shingshang piece,
+	 * and check if there was/is a shingshang sequence
+	 * */
 	public Boolean placePiece(Piece piece, Point point) {
 
 		Boolean ret = false;
@@ -243,6 +255,7 @@ public class BoardGame {
 		this.shingShangPiece = shingShangPiece;
 	}
 
+	/**  get the neighbour of one point, with the point and his destination */
 	private Point getNeighbourPoint(Piece piece, Point point_to) {
 
 		Point[][] all_points = getPoints();
@@ -362,6 +375,7 @@ public class BoardGame {
 
 	}
 
+	/**  If ShingShangseq is true, we are in a sequence of shingshang, ( extra turn)*/
 	public boolean getShingShangSeq() {
 		return shingShangSeq;
 	}
@@ -370,6 +384,7 @@ public class BoardGame {
 		this.shingShangSeq = bool;
 	}
 
+	/** Check if an opponent dragon is on a portal */
 	public Tuple<Boolean, String> onPortalCheck() {
 
 		Tuple<Boolean, String> ret = new Tuple<Boolean, String>(false, null);
@@ -410,6 +425,7 @@ public class BoardGame {
 		return ret;
 	}
 
+	/** Check if there is dragons left */
 	public Tuple<Boolean, String> noDragonCheck() {
 
 		// Check if there is no Dragon left on one side to end the game
@@ -458,6 +474,7 @@ public class BoardGame {
 		return ret;
 	}
 	
+	/**  Get all the valid moves of one point */
 	public ArrayList<Point> getValidMoves(Piece piece){
 		return moveValidator.getValidMoves(piece, getPoints());
 	}

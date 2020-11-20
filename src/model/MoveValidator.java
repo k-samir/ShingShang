@@ -4,6 +4,12 @@ import java.lang.Math;
 import java.util.ArrayList;
 
 
+/**
+ * MoveValidator class : the class validate all the move of the player 
+ * before moving
+ * @author Samir KAMAR
+ *
+ */
 public class MoveValidator {
 
 	private String jumpType = "";
@@ -51,7 +57,7 @@ public class MoveValidator {
 	}
 	
 
-
+	
 	private Boolean hasNeighbour(Piece piece, Point point_to, Point[][] all_points) {
 		Boolean ret = false;
 
@@ -171,6 +177,7 @@ public class MoveValidator {
 
 	}
 
+	/**  Get the neigboursize  to know if i can eat him or not */
 	private Integer getNeighbourSize(Piece piece,Integer x, Integer y, Point[][] all_points) {
 		if(all_points[x][y].getPiece().getColor() == piece.getColor()) {
 			jumpType = "AllyJump";
@@ -334,7 +341,7 @@ public class MoveValidator {
 
 
 
-
+	/** Check in all the vertical, horizontal and diagonal point ( 1 radius point away and 2 radius points away )  */
 	private Boolean isInBigStar(Piece piece, Point point_to, Point[][] all_points) {
 		Boolean verification = false;
 
@@ -383,6 +390,7 @@ public class MoveValidator {
 		return verification;
 	}
 
+	/** Check in all the vertical, horizontal and diagonal point ( only 1 radius point away )  */
 	private Boolean isInStar(Piece piece, Point point_to, Point[][] all_points) {
 		Boolean verification = false;
 
@@ -430,9 +438,8 @@ public class MoveValidator {
 		return verification;
 	}
 
+	/** checking in all the points there is a valid move and adding it to the arraylist  */
 	public ArrayList<Point> getValidMoves(Piece piece,  Point[][] all_points) {
-		// LOGIC
-		
 		ArrayList<Point> all_valid_moves = new ArrayList<Point>();
 		
 		for(var i = 0; i < all_points.length; i++){

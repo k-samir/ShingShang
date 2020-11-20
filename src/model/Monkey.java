@@ -1,5 +1,14 @@
 package model;
 
+
+/**
+ * Monkey class : represent the Monkey Piece
+ * 
+ * @author Samir KAMAR
+ *
+ */
+
+
 public class Monkey implements Piece {
 
 	private String type;

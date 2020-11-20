@@ -2,6 +2,13 @@ package model;
 
 import java.util.ArrayList;
 
+
+/**
+ * Game class : game methods, to manage various actions
+ * 
+ * @author Samir KAMAR
+ *
+ */
 public class Game {
 	private Player player1, player2;
 	private BoardGame board_game;
@@ -34,7 +41,10 @@ public class Game {
 		this.board_game.setShingShangSeq(bool);
 	}
 
-	private void updateValidMoves(Player player, int x1, int y1) {
+	
+	/**  update the validmoves of the current player and store it in currentvalidmoves arraylist*/
+	
+	public void updateValidMoves(Player player, int x1, int y1) {
 
 		this.setCurrentValidMoves(null);
 		this.setCurrentValidMoves(this.board_game.getValidMoves(board_game.getPoints()[x1][y1].getPiece()));
@@ -49,44 +59,11 @@ public class Game {
 		this.currentValidMoves = currentValideMoves;
 	}
 
-	public void displayValidMoves(Player player, int x1, int y1) {
-
-		System.out.println("\n");
-		if (board_game.getPoints()[x1][y1].getPiece() != null) {
-			if (board_game.getShingShangPiece() != board_game.getPoints()[x1][y1].getPiece()) {
-				if (board_game.getPoints()[x1][y1].getPiece().getColor() == player.getColor()) {
-
-					updateValidMoves(player, x1, y1);
-
-					System.out.println("+--------------------------------------+\r\n"
-							+ "|  Possible move for current piece :   |\r\n"
-							+ "+--------------------------------------+\r\n");
-
-					for (int i = 0; i < currentValidMoves.size(); i++) {
-						System.out.println("Destination possible : [" + currentValidMoves.get(i).getN_row() + " "
-								+ currentValidMoves.get(i).getN_column() + "]");
-
-					}
-
-				} else {
-					System.out.println("The Piece is not yours, try again");
-				}
-			}
-			else {
-				System.out.println("The Piece was used in last Shing Shang, try another piece");
-			}
-		}
-		else {
-			System.out.println("There is no Piece on the initial Point, try again");
-		}
-
-		System.out.println("\n");
-
-	}
-
+	
+	/**  Player move action : check if piece is players,check if destination point is empty adn usable */
+	
 	public Boolean playerPlays(Player player, int x1, int y1, int x2, int y2) {
-		// CHECK IF PIECE IS PLAYERS
-		// CHECK IF POINTS IS EMPTY, VALID
+		
 		Boolean ret = false;
 
 		// FREE DESTINATION AND EXISTING PIECE FROM POINT 1
@@ -136,11 +113,7 @@ public class Game {
 		Tuple<Boolean, String> game_over = this.board_game.onPortalCheck();
 		Tuple<Boolean, String> game_over2 = this.board_game.noDragonCheck();
 
-		// System.out.println("PORTAL CHECK FIRST:" + game_over.getFirst() + " , CHECK
-		// SECOND:" + game_over.getSecond());
-		// System.out.println("DRAGON CHECK FIRST:" + game_over2.getFirst() + " , CHECK
-		// SECOND:" + game_over2.getSecond());
-
+		
 		if (game_over.getFirst()) {
 
 			this.setGameState(GameState.ENDGAME);

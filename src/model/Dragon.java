@@ -1,5 +1,13 @@
 package model;
 
+/**
+ * Dragon class : represent the Dragon Piece
+ * 
+ * @author Samir KAMAR
+ *
+ */
+
+
 public class Dragon implements Piece {
 
 	private String type;
