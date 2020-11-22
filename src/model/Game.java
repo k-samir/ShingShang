@@ -45,8 +45,9 @@ public class Game {
 	/**  update the validmoves of the current player and store it in currentvalidmoves arraylist*/
 	
 	public void updateValidMoves(Player player, int x1, int y1) {
-
-		this.setCurrentValidMoves(null);
+		if(this.currentValidMoves != null) {
+		this.currentValidMoves.clear();
+		}
 		this.setCurrentValidMoves(this.board_game.getValidMoves(board_game.getPoints()[x1][y1].getPiece()));
 
 	}
