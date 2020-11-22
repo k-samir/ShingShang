@@ -28,6 +28,7 @@ public class ShingShangTest {
 		gameC.createTheGame(player1, player2);
 		gameC.startTheGame();
 
+		
 	}
 
 	@Test
