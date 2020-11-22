@@ -14,6 +14,8 @@ Chaque joueur possède une armée de 12 Bushis ( Pièces ). Cette armée est com
 
 [Lien de téléchargement du jeu](https://github.com/k-samir/ShingShang/blob/main/jar/ShingShang_SK.jar?raw=true)
 
+[Diagramme UML du Projet](https://github.com/k-samir/ShingShang/blob/main/src/UML3.jpg)
+
 ----------------
 # Objectifs pédagogiques
 
