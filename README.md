@@ -14,21 +14,23 @@ Chaque joueur possède une armée de 12 Bushis ( Pièces ). Cette armée est com
 
 [Lien de téléchargement du jeu](https://github.com/k-samir/ShingShang/blob/main/jar/ShingShang_SK.jar?raw=true)
 
+[Diagramme UML du Projet](https://github.com/k-samir/ShingShang/blob/main/src/UML3.jpg)
+
 ----------------
 # Objectifs pédagogiques
 
 Prendre connaissance du projet, savoir déterminer les objectifs du projet. 
 
-L’accent est mis davantage sur les aspects conception logicielle (au sens documentation, réeutilisabilitée...) et suivi de projet que sur la difficultée technique du sujet.
+L’accent est mis davantage sur les aspects conception logiciels (au sens documentation, réutilisabilité...) et suivi de projet que sur la difficulté technique du sujet.
 
 ----------------
 # Base du jeu
 
 Les joueurs exécutent chacun leur tour une action parmi les deux actions suivantes :
 
- un joueur peut déplacer l’une de ses pièces présentes sur le plateau vers une autre case du plateau.
+un joueur peut déplacer l’une de ses pièces présentes sur le plateau vers une autre case du plateau.
 
- un joueur peut sauter par dessus une autre pièce si celle-ci est plus petite ou de même taille que la pièce du sauteur.
+un joueur peut sauter par-dessus une autre pièce si celle-ci est plus petite ou de même taille que la pièce du sauteur.
 
 ----------------
 
@@ -48,23 +50,22 @@ Le saut peut se faire verticalement, horizontalement ou en diagonale, à conditi
 
 On peut enchaîner plusieurs sauts au cours d’un même tour. Cet enchaînement de sauts s’appelle un SHING SHANG.
 
-Si, lors d’un SHING SHANG,  on saute par dessus une pièce adverse, on doit s’arrêter et la pièce de l’adversaire est retirée du plateau. Toutefois, on gagne un tour de jeu supplémentaire avec une autre pièce.
+Si, lors d’un SHING SHANG, on saute par dessus une pièce adverse, on doit s’arrêter et la pièce de l’adversaire est retirée du plateau. Toutefois, on gagne un tour de jeu supplémentaire avec une autre pièce.
 
 ----------------
 
 
 # Règle spécifique
 
- Les singes peuvent se déplacer d’une ou deux cases dans n’importe quelle direction, horizontalement,verticalement ou en diagonale mais sans changer de direction au cours du tour.
+Les singes peuvent se déplacer d’une ou deux cases dans n’importe quelle direction, horizontalement,verticalement ou en diagonale, mais sans changer de direction au cours du tour.
 Les lions peuvent se déplacer d’une case dans n’importe quelle direction, horizontalement, verticalement ou en diagonale.
- Les dragons ne peuvent se déplacer qu’en sautant.
+Les dragons ne peuvent se déplacer qu’en sautant.
 
 ----------------
 
 # Fin de partie
 
-Un joueur remporte la partie lorsqu’il parvient à amener l’un de ses dragons sur l’un des portails (cases spéciales) de son adversaire ou qu’il capture les deux dragons
-de son adversaire.
+Un joueur remporte la partie lorsqu’il parvient à amener l’un de ses dragons sur l’un des portails (cases spéciales) de son adversaire ou qu’il capture les deux dragons de son adversaire.
 
 ----------------
 
@@ -77,15 +78,16 @@ Pour lancer le jeu vous devez telecharger le jar depuis github.
 
 ## Executer le jeu
 
-Sur Windows/Linux ou Max :   Ouvrir un command prompt/bash, rendez-vous à l'emplacement du .jar et taper : java -jar ShingShangSK.jar 
+Sur Windows/Linux ou Max : Ouvrir un command prompt/bash, rendez-vous à l'emplacement du .jar et taper : java -jar ShingShangSK.jar 
 
 ----------------
 
 # Technologies utilisés
 
 Le jeu a entièrement été développé sur [Eclipse](https://www.eclipse.org/) en `Java` JDK 14.0.2.
-Avec nottament [UMLet](https://www.umlet.com/) pour la création des diagramme UML.
+Avec notamment [UMLet](https://www.umlet.com/) pour la création des diagramme UML.
 
 
 ### Auteur 
-*  [Samir KAMAR](https://github.com/k-samir)
+* [Samir KAMAR](https://github.com/k-samir)
+
