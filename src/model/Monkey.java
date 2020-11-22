@@ -12,7 +12,7 @@ package model;
 public class Monkey implements Piece {
 
 	private String type;
-	private Integer size;
+	private int size;
 	private Point position;
 	private PieceState pieceState;
 	private String color;
@@ -47,7 +47,7 @@ public class Monkey implements Piece {
 	}
 
 	@Override
-	public Integer getSize() {
+	public int getSize() {
 		return size;
 	}
 
@@ -85,7 +85,7 @@ public class Monkey implements Piece {
 	}
 
 	@Override
-	public Boolean isDead() {
+	public boolean isDead() {
 		return this.pieceState == PieceState.DEAD;
 	}
 

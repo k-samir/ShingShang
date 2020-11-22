@@ -58,8 +58,8 @@ public class MoveValidator {
 	
 
 	
-	private Boolean hasNeighbour(Piece piece, Point point_to, Point[][] all_points) {
-		Boolean ret = false;
+	private boolean hasNeighbour(Piece piece, Point point_to, Point[][] all_points) {
+		boolean ret = false;
 
 		int x = piece.getPosition().getN_row();
 		int y = piece.getPosition().getN_column();
@@ -189,9 +189,9 @@ public class MoveValidator {
 		return all_points[x][y].getPiece().getSize();
 	}
 
-	private Boolean canJump(Piece piece, Point point_to, Point[][] all_points) {
+	private boolean canJump(Piece piece, Point point_to, Point[][] all_points) {
 
-		Boolean canJump = false;
+		boolean canJump = false;
 
 		int x = piece.getPosition().getN_row();
 		int y = piece.getPosition().getN_column();
@@ -342,8 +342,8 @@ public class MoveValidator {
 
 
 	/** Check in all the vertical, horizontal and diagonal point ( 1 radius point away and 2 radius points away )  */
-	private Boolean isInBigStar(Piece piece, Point point_to, Point[][] all_points) {
-		Boolean verification = false;
+	private boolean isInBigStar(Piece piece, Point point_to, Point[][] all_points) {
+		boolean verification = false;
 
 		int stop_X = piece.getPosition().getN_row() + 3;
 		int stop_Y = piece.getPosition().getN_column() + 3;
@@ -391,8 +391,8 @@ public class MoveValidator {
 	}
 
 	/** Check in all the vertical, horizontal and diagonal point ( only 1 radius point away )  */
-	private Boolean isInStar(Piece piece, Point point_to, Point[][] all_points) {
-		Boolean verification = false;
+	private boolean isInStar(Piece piece, Point point_to, Point[][] all_points) {
+		boolean verification = false;
 
 		int stop_X = piece.getPosition().getN_row() + 2;
 		int stop_Y = piece.getPosition().getN_column() + 2;

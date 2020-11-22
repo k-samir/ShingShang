@@ -33,11 +33,11 @@ public class Game {
 		this.board_game.init();
 	}
 
-	public Boolean shingShangSeq() {
+	public boolean shingShangSeq() {
 		return this.board_game.getShingShangSeq();
 	}
 
-	public void setShingShangSeq(Boolean bool) {
+	public void setShingShangSeq(boolean bool) {
 		this.board_game.setShingShangSeq(bool);
 	}
 
@@ -62,9 +62,9 @@ public class Game {
 	
 	/**  Player move action : check if piece is players,check if destination point is empty adn usable */
 	
-	public Boolean playerPlays(Player player, int x1, int y1, int x2, int y2) {
+	public boolean playerPlays(Player player, int x1, int y1, int x2, int y2) {
 		
-		Boolean ret = false;
+		boolean ret = false;
 
 		// FREE DESTINATION AND EXISTING PIECE FROM POINT 1
 		if (board_game.getPoints()[x2][y2].isUsable()) {

@@ -39,12 +39,12 @@ public class GameGUI {
 	
 	private void nextTurn(Scanner sc) {
 
-		Boolean move = false;
+		boolean move = false;
 		System.out.println("\n ---- Player " + gameC.getCurrentPlayerTurn() + "'s turn : ---- ");
 		
 		while (!move) {
 
-			System.out.println("Choose option : 1 playe move , 2 pass turn, 3 see all possible move for a piece");
+			System.out.println("Choose option : 1 playe move , 2 pass turn, 3 see all possible move for a piece, 4 to quit");
 			System.out.println("Enter Your choice : ");
 			int action = sc.nextInt();
 			// MOVING
@@ -102,6 +102,9 @@ public class GameGUI {
 				}
 				
 				
+			}
+			else if(action == 4) {
+				System.exit(1);
 			}
 			
 			gameC.getGame().checkGameOver();

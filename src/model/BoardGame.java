@@ -20,7 +20,7 @@ public class BoardGame {
 
 	private MoveValidator moveValidator;
 
-	private Boolean shingShangSeq = false;
+	private boolean shingShangSeq = false;
 	private Piece shingShangPiece = null;
 
 	public BoardGame(String colorJ1, String colorJ2) {
@@ -202,9 +202,9 @@ public class BoardGame {
 	/**  Method to check if the play is ok , check if the piece is not the current shingshang piece,
 	 * and check if there was/is a shingshang sequence
 	 * */
-	public Boolean placePiece(Piece piece, Point point) {
+	public boolean placePiece(Piece piece, Point point) {
 
-		Boolean ret = false;
+		boolean ret = false;
 
 		if (piece.equals(shingShangPiece)) {
 			System.out.println("Choose another Piece, you already did a ShingShang sequence with this piece.");

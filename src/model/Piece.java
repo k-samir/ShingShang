@@ -6,9 +6,9 @@ public interface Piece {
 
 	public void setType(String type);
 
-	public Integer getSize();
+	public int getSize();
 
-	public Boolean isDead();
+	public boolean isDead();
 
 	public Point[] valideMoves();
 
