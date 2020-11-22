@@ -19,7 +19,7 @@ Chaque joueur possède une armée de 12 Bushis ( Pièces ). Cette armée est com
 
 Prendre connaissance du projet, savoir déterminer les objectifs du projet. 
 
-L’accent est mis davantage sur les aspects conception logiciels (au sens documentation, réeutilisabilitée...) et suivi de projet que sur la difficulté technique du sujet.
+L’accent est mis davantage sur les aspects conception logiciels (au sens documentation, réutilisabilité...) et suivi de projet que sur la difficulté technique du sujet.
 
 ----------------
 # Base du jeu
