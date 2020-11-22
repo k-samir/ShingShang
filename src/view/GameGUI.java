@@ -161,7 +161,7 @@ public class GameGUI {
 		Scanner sc = new Scanner(System.in);
 
 		 while (true) {
-	         System.out.println("Press any key to begin ...");
+	         System.out.println("Press enter key to begin ...");
 	         
 	         sc.nextLine();
 
