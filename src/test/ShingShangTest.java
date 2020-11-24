@@ -80,19 +80,50 @@ public class ShingShangTest {
 
 	}
 
+	// SHINGSHANG WHEN JUMP
 	@Test
-	public void SeqShingShang() {
+	public void SeqShingShangAlly() {
 		init();
 			
 		// DRAGON 01 to 23
 		// Check if there was a shingshang sequence before the move
-		assertEquals(false, gameC.getGame().getBoardGame().getShingShangSeq());
-		assertEquals(null,gameC.getGame().getBoardGame().getShingShangPiece());
+		assertEquals(false, gameC.getGame().getBoardGame().getShingShangSeqAlly());
+		assertEquals(null,gameC.getGame().getBoardGame().getShingShangPieceAlly());
 		
 		gameC.player1Move(0, 1, 2, 3);
 
 		// Check if there was a shingshang sequence after the move
+		assertEquals(true, gameC.getGame().getBoardGame().getShingShangSeqAlly());
+
+	}
+	
+	// SHINGSHANG WHEN EAT
+	@Test
+	public void SeqShingShang() {
+		
+		init();
+		// ADDING TESTING PIECES
+		gameC.getGame().getBoardGame().addDragon1(4, 6);
+
+		gameC.getGame().getBoardGame().addDragon2(4, 5);
+
+		// INDEX OF PIECE WHO WILL GET EATEN
+		int index = gameC.getGame().getBoardGame().getPieces().get(1).getPieces()
+				.indexOf(gameC.getGame().getBoardGame().getPoints()[4][5].getPiece());
+
+	
+		assertEquals(true, gameC.getGame().getBoardGame().getPoints()[4][5].isUsed());
+		
+		// Check if there was a shingshang sequence before the move
+				assertEquals(false, gameC.getGame().getBoardGame().getShingShangSeq());
+				assertEquals(null,gameC.getGame().getBoardGame().getShingShangPiece());
+				
+		gameC.player1Move(4, 6, 4, 4);
+		assertEquals(false, gameC.getGame().getBoardGame().getPoints()[4][5].isUsed());
+
+		// Check if there was a shingshang sequence after the move
 		assertEquals(true, gameC.getGame().getBoardGame().getShingShangSeq());
+	
 
 	}
 	

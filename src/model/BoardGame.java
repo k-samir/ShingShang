@@ -21,7 +21,10 @@ public class BoardGame {
 	private MoveValidator moveValidator;
 
 	private boolean shingShangSeq = false;
+	private boolean shingShangSeqAlly = false;
+	
 	private Piece shingShangPiece = null;
+	private Piece shingShangPieceAlly = null;
 
 	public BoardGame(String colorJ1, String colorJ2) {
 		// super();
@@ -208,15 +211,20 @@ public class BoardGame {
 
 		if (piece.equals(shingShangPiece)) {
 			System.out.println("Choose another Piece, you already did a ShingShang sequence with this piece.");
-		} else {
+		} 
+			
+		else {
 
 			Tuple<Boolean, String> moveData = moveValidator.moveValid(piece, point, getPoints());
 
 			// CHECK IF MOVE OK -- getFirst return the Boolean of moveValidator ( move is
 			// valid or not )
 			if (moveData.getFirst()) {
-				// Reset the current ShingShangPiece
+				//If shingshangAlly true check if shingshangpiece is piece played OR continue if no shingshangseqally
+				if ((piece.equals(shingShangPieceAlly) &&  shingShangSeqAlly ) || (!shingShangSeqAlly)){			
+				// Reset the current ShingShangPiece & ShingShangPieceAlly
 				setShingShangPiece(null);
+				setShingShangPieceAlly(null);
 
 				if (moveData.getSecond() == "EnnemyJump") {
 					System.out.println("SHING-SHANG you have 1 extra turn with another piece !");
@@ -227,25 +235,30 @@ public class BoardGame {
 					movePiece(piece, point);
 
 				} else if (moveData.getSecond() == "AllyJump") {
-					System.out.println("SHING-SHANG you have 1 extra turn !");
-					shingShangSeq = true;
+					System.out.println("SHING-SHANG you have 1 extra turn with this piece !");
+					shingShangSeqAlly = true;			
+					setShingShangPieceAlly(piece);
 					movePiece(piece, point);
 				}
 
 				else {
 					this.shingShangSeq = false;
+					this.shingShangSeqAlly = false;
 					movePiece(piece, point);
 				}
 
 				ret = true;
-			} else {
+			}
+			else {
 				ret = false;
 				System.out.println("The Move is not allowed, try again");
 			}
 
 		}
+		}
 		return ret;
 	}
+
 
 	public Piece getShingShangPiece() {
 		return shingShangPiece;
@@ -253,6 +266,14 @@ public class BoardGame {
 
 	public void setShingShangPiece(Piece shingShangPiece) {
 		this.shingShangPiece = shingShangPiece;
+	}
+	
+	public Piece getShingShangPieceAlly() {
+		return shingShangPieceAlly;
+	}
+
+	public void setShingShangPieceAlly(Piece shingShangPieceAlly) {
+		this.shingShangPieceAlly = shingShangPieceAlly;
 	}
 
 	/**  get the neighbour of one point, with the point and his destination */
@@ -383,6 +404,15 @@ public class BoardGame {
 	public void setShingShangSeq(Boolean bool) {
 		this.shingShangSeq = bool;
 	}
+	
+	/**  If ShingShangseqAlly is true, we are in a sequence of shingshang, ( extra turn)*/
+	public boolean getShingShangSeqAlly() {
+		return shingShangSeqAlly;
+	}
+
+	public void setShingShangSeqAlly(Boolean bool) {
+		this.shingShangSeqAlly = bool;
+	}
 
 	/** Check if an opponent dragon is on a portal */
 	public Tuple<Boolean, String> onPortalCheck() {
@@ -476,7 +506,17 @@ public class BoardGame {
 	
 	/**  Get all the valid moves of one point */
 	public ArrayList<Point> getValidMoves(Piece piece){
-		return moveValidator.getValidMoves(piece, getPoints());
+		ArrayList<Point> emptyArray = new ArrayList<Point>();
+		
+		if (piece.equals(shingShangPiece)) {
+			return emptyArray;
+		}
+		else if ((piece.equals(shingShangPieceAlly) &&  shingShangSeqAlly ) || (!shingShangSeqAlly)){
+			return moveValidator.getValidMoves(piece, getPoints());
+		}
+		else {	
+			return emptyArray;
+		}
 	}
 
 }

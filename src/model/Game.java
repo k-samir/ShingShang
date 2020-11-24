@@ -40,6 +40,16 @@ public class Game {
 	public void setShingShangSeq(boolean bool) {
 		this.board_game.setShingShangSeq(bool);
 	}
+	
+	public boolean shingShangSeqAlly() {
+		return this.board_game.getShingShangSeqAlly();
+	}
+
+	public void setShingShangSeqAlly(boolean bool) {
+		this.board_game.setShingShangSeqAlly(bool);
+	}
+	
+	
 
 	
 	/**  update the validmoves of the current player and store it in currentvalidmoves arraylist*/

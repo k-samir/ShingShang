@@ -82,6 +82,7 @@ public class GameGUI {
 			else if (action == 2) {
 				move = true;
 				gameC.getGame().setShingShangSeq(false);
+				gameC.getGame().setShingShangSeqAlly(false);
 			}
 			
 			else if(action == 3) {
@@ -111,7 +112,8 @@ public class GameGUI {
 			gameC.getGame().checkGameOver();
 
 		}
-		if (!gameC.getGame().shingShangSeq()) {
+		// Check if there is any type of shingshang ( jump ally or eat)
+		if (!gameC.getGame().shingShangSeq() && !gameC.getGame().shingShangSeqAlly()) {
 
 			gameC.switchPlayer();
 			
@@ -292,6 +294,8 @@ public class GameGUI {
 			else if (action == 2) {
 				move = true;
 				gameC.getGame().setShingShangSeq(false);
+				gameC.getGame().setShingShangSeqAlly(false);
+				
 			}
 			
 			else if(action == 3) {
@@ -359,7 +363,7 @@ public class GameGUI {
 			}
 			
 		
-		if (!gameC.getGame().shingShangSeq()) {
+		if (!gameC.getGame().shingShangSeq() || !gameC.getGame().shingShangSeqAlly()) {
 
 			gameC.switchPlayer();
 			
