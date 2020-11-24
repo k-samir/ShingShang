@@ -2,7 +2,7 @@ package model;
 
 
 /**
- * Point class : represent the point in the boardgame ( a cell ) there is 84 playable cells in this game 
+ * Point class : represent the point in the boardgame ( a cell / une case ) there is 84 playable cells in this game 
  * (100 cells in total)
  * 
  * @author Samir KAMAR
