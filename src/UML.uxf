@@ -7,7 +7,7 @@
       <x>12</x>
       <y>96</y>
       <w>176</w>
-      <h>240</h>
+      <h>268</h>
     </coordinates>
     <panel_attributes>BoardGame
 --
@@ -18,6 +18,8 @@
 -moveValidator : MoveValidator
 -shingShangSeq : Boolean
 -shingShangPiece : Piece
+-shingShangPieceAlly : Piece
+-shingSgangSeqAlly : Boolean
 --
 +BoardGame(colorJ1 : String,colorJ2:String):BoardGame
 +init():void
@@ -44,6 +46,8 @@
 -getNeighbourPoint(piece:Piece,point : Point):Point
 +getShingShangSeq():Boolean
 +setShingShangSeq(bool:Boolean):void
++getShingShangSeqAlly():Boolean
++setShingShangSeqAlly(bool:Boolean):void
 +onPortalCheck(): Tuple&lt;Boolean,String&gt;
 +noDragonCheck() : Tuple&lt;Boolean,String&gt;
 +getValidMoves(piece:Piece): ArrayList&lt;Point&gt;
@@ -381,7 +385,7 @@ NOTHING
       <x>232</x>
       <y>100</y>
       <w>184</w>
-      <h>184</h>
+      <h>196</h>
     </coordinates>
     <panel_attributes>Game
 --
@@ -396,6 +400,8 @@ NOTHING
 +setupBoard():void
 +shingShangSeq():Boolean
 +setShingShangSeq(bool : Boolean):void
++shingShangSeqAlly():Boolean
++setShingShangSeqAlly(bool : Boolean):void
 +updateValidMoves(player:Player ,x1: Integer,x2:Integer):void
 +getCurrentValideMoves():ArrayList&lt;Point&gt;
 +setCurrentValideMoves(validMoves:ArrayList&lt;Point&gt;):void
@@ -534,15 +540,15 @@ m2=2
     <id>Relation</id>
     <coordinates>
       <x>44</x>
-      <y>332</y>
+      <y>360</y>
       <w>20</w>
-      <h>52</h>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=100
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -572,13 +578,13 @@ m2=2
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>108</x>
-      <y>332</y>
-      <w>60</w>
-      <h>168</h>
+      <x>156</x>
+      <y>360</y>
+      <w>12</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>130.0;400.0;130.0;70.0;10.0;70.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;330.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -663,13 +669,13 @@ use</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>168</x>
-      <y>332</y>
+      <y>360</y>
       <w>324</w>
-      <h>180</h>
+      <h>152</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 use</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;380.0;600.0;380.0;600.0;430.0;790.0;430.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;310.0;600.0;310.0;600.0;360.0;790.0;360.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
