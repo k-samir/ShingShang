@@ -325,10 +325,17 @@ public class GameGUI {
 			gameC.getGame().checkGameOver();
 
 			}
+				
 		}
 		else {
 			
-			
+			// TO TEST BOT
+			// int movesnbr = 0;
+			// while(!gameC.winnerExist()) {
+			//	 movesnbr++;
+			//	gameC.getGame().setShingShangSeq(false);
+			//	gameC.getGame().setShingShangSeqAlly(false);
+				
 			
 			int validMoves = 0;
 			Piece randomPiece = null;
@@ -349,28 +356,40 @@ public class GameGUI {
 				if(gameC.getGame().getCurrentValideMoves().size() > 0) {
 					validMoves = 1;
 				}
+				else if(gameC.getGame().getCurrentValideMoves().size() == 1 || gameC.getGame().getCurrentValideMoves().size() == 0) {
+					validMoves = -1;
+				}
 				
 			
 			}
-			
+			// Check if -1 to pass turn 
+			if(validMoves != -1) {
 			randomMove = (int)(Math.random() * gameC.getGame().getCurrentValideMoves().size());
 			move = gameC.player2Move(x_randomPiece, y_randomPiece, 
 					gameC.getGame().getCurrentValideMoves().get(randomMove).getN_row(),
 					gameC.getGame().getCurrentValideMoves().get(randomMove).getN_column());
 			
 				gameC.getGame().checkGameOver();
-			
 			}
+			else {
+				gameC.switchPlayer();
+				
+			}
+			//}
+			// System.out.println(" NOMBRE DE MOVE : " + movesnbr);
+				// Check if there is any type of shingshang ( jump ally or eat)
+		}	
 			
-		
-		if (!gameC.getGame().shingShangSeq() || !gameC.getGame().shingShangSeqAlly()) {
+		// Check if there is any type of shingshang ( jump ally or eat)
+				if (!gameC.getGame().shingShangSeq() && !gameC.getGame().shingShangSeqAlly()) {
 
-			gameC.switchPlayer();
-			
-		}
+					gameC.switchPlayer();
+					
+				}
 
-		displayBoardGame();
+				displayBoardGame();
 	}
+	
 	
 	
 }
