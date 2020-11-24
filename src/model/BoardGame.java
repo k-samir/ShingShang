@@ -230,9 +230,11 @@ public class BoardGame {
 					System.out.println("SHING-SHANG you have 1 extra turn with another piece !");
 					this.shingShangSeq = true;
 					setShingShangPiece(piece);
-
+					
 					eatPiece(piece, getNeighbourPoint(piece, point));
 					movePiece(piece, point);
+					setShingShangPieceAlly(null);
+					this.setShingShangSeqAlly(false);
 
 				} else if (moveData.getSecond() == "AllyJump") {
 					System.out.println("SHING-SHANG you have 1 extra turn with this piece !");
@@ -511,7 +513,10 @@ public class BoardGame {
 		if (piece.equals(shingShangPiece)) {
 			return emptyArray;
 		}
-		else if ((piece.equals(shingShangPieceAlly) &&  shingShangSeqAlly ) || (!shingShangSeqAlly)){
+		else if (piece.equals(shingShangPieceAlly) &&  shingShangSeqAlly ){
+			return moveValidator.getValidMoves(piece, getPoints());
+		}
+		else if(!shingShangSeqAlly){
 			return moveValidator.getValidMoves(piece, getPoints());
 		}
 		else {	
