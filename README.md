@@ -78,7 +78,7 @@ Pour lancer le jeu vous devez telecharger le jar depuis github.
 
 ## Executer le jeu
 
-Sur Windows/Linux ou Max : Ouvrir un command prompt/bash, rendez-vous à l'emplacement du .jar et taper : java -jar ShingShangSK.jar 
+Sur Windows/Linux ou Mac : Ouvrir un command prompt/bash, rendez-vous à l'emplacement du .jar et taper : java -jar ShingShangSK.jar 
 
 ----------------
 
