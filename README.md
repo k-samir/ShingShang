@@ -3,91 +3,87 @@
 ![](https://github.com/k-samir/ShingShang/blob/main/image/board.png?raw=true)
 
 ----------------
-# Présentation
-Bienvenue sur le git du projet ShingShang !
+# Presentation
+Welcome to the ShingShang project repository!
 
-L’objectif de ce projet est d’implémenter un jeu de plateau, appelé SHING SHANG.
-Il s’agit d’un jeu à deux joueurs. 
-Chaque joueur possède une armée de 12 Bushis ( Pièces ). Cette armée est composée de 3 groupes : 2 dragons, 4 lions et 6 singes. 
+The objective of this project is to implement a board game called SHING SHANG. It is a two-player game. Each player has an army of 12 Bushis (Pieces). This army is divided into 3 groups: 2 dragons, 4 lions, and 6 monkeys.. 
 
-[Documentation du projet](https://docs.google.com/document/d/1ZtqhFwuuNymzyjvvDptcIIbRV_NNXb4CPYg6uDdT0ng/edit#)
+[Project documentation](https://docs.google.com/document/d/1ZtqhFwuuNymzyjvvDptcIIbRV_NNXb4CPYg6uDdT0ng/edit#)
 
-[Lien de téléchargement du jeu](https://github.com/k-samir/ShingShang/blob/main/jar/ShingShang_SK.jar?raw=true)
+[Game download link](https://github.com/k-samir/ShingShang/blob/main/jar/ShingShang_SK.jar?raw=true)
 
-[Diagramme UML du Projet](https://github.com/k-samir/ShingShang/blob/main/src/UML3.jpg)
+[UML Diagram of the Project](https://github.com/k-samir/ShingShang/blob/main/src/UML3.jpg)
 
 ----------------
-# Objectifs pédagogiques
+# Educational Objectives
+Understand the project and learn how to identify its objectives
 
-Prendre connaissance du projet, savoir déterminer les objectifs du projet. 
-
-L’accent est mis davantage sur les aspects conception logiciels (au sens documentation, réutilisabilité...) et suivi de projet que sur la difficulté technique du sujet.
+The focus is placed more on software design aspects (such as documentation, reusability, etc.) and project tracking rather than on the technical difficulty of the subject
 
 ----------------
-# Base du jeu
+# Game Basics
 
-Les joueurs exécutent chacun leur tour une action parmi les deux actions suivantes :
+Players take turns performing one of the following two actions:
 
-un joueur peut déplacer l’une de ses pièces présentes sur le plateau vers une autre case du plateau.
-
-un joueur peut sauter par-dessus une autre pièce si celle-ci est plus petite ou de même taille que la pièce du sauteur.
+A player can move one of their pieces on the board to another square.
+A player can jump over another piece if the piece being jumped over is smaller or the same size as the jumping piece.
 
 ----------------
 
-# Déplacement
+# Moves
 
-Pour déplacer une pièce sur le plateau, il est nécessaire que la case d’arrivée soit libre. 
+To move a piece on the board, the destination square must be free
 
-On peut se déplacer horizontalement, verticalement ou en diagonale, aussi bien en avant qu’en arrière. 
+A piece can move horizontally, vertically, or diagonally, both forward and backward
 
-Pour sauter, la pièce du sauteur doit se trouver sur une case contiguë à une case occupée par l’une de ses propres pièces ou par celle du joueur adverse. 
+To jump, the jumping piece must be on a square adjacent to a square occupied by one of its own pieces or an opponent's piece
 
-Le saut peut se faire verticalement, horizontalement ou en diagonale, à condition que la case suivante soit vide. 
+The jump can be made vertically, horizontally, or diagonally, provided the next square is empty.
 
 ----------------
 
-# Séquence Shing Shang
+# Shing Shang Sequence
 
-On peut enchaîner plusieurs sauts au cours d’un même tour. Cet enchaînement de sauts s’appelle un SHING SHANG.
+Multiple jumps can be chained during the same turn. This sequence of jumps is called a SHING SHANG.
 
-Si, lors d’un SHING SHANG, on saute par dessus une pièce adverse, on doit s’arrêter et la pièce de l’adversaire est retirée du plateau. Toutefois, on gagne un tour de jeu supplémentaire avec une autre pièce.
+If, during a SHING SHANG, a player jumps over an opponent's piece, the player must stop, and the opponent's piece is removed from the board. However, the player gains an additional turn with another piece.
 
 ----------------
 
 
-# Règle spécifique
+# Specific Rule
 
-Les singes peuvent se déplacer d’une ou deux cases dans n’importe quelle direction, horizontalement,verticalement ou en diagonale, mais sans changer de direction au cours du tour.
-Les lions peuvent se déplacer d’une case dans n’importe quelle direction, horizontalement, verticalement ou en diagonale.
-Les dragons ne peuvent se déplacer qu’en sautant.
-
-----------------
-
-# Fin de partie
-
-Un joueur remporte la partie lorsqu’il parvient à amener l’un de ses dragons sur l’un des portails (cases spéciales) de son adversaire ou qu’il capture les deux dragons de son adversaire.
+Monkeys can move one or two squares in any direction—horizontally, vertically, or diagonally—but cannot change direction during the turn.
+Lions can move one square in any direction—horizontally, vertically, or diagonally.
+Dragons can only move by jumping.
 
 ----------------
 
-# Lancement du jeu
+# End of the Game
 
-Pour lancer le jeu vous devez telecharger le jar depuis github.
-[Lien de téléchargement du .jar](https://github.com/k-samir/ShingShang/blob/main/jar/ShingShang_SK.jar?raw=true)
-
-----------------
-
-## Executer le jeu
-
-Sur Windows/Linux ou Mac : Ouvrir un command prompt/bash, rendez-vous à l'emplacement du .jar et taper : java -jar ShingShangSK.jar 
+A player wins the game when they manage to move one of their dragons to one of their opponent's portals (special squares) or when they capture both of their opponent's dragons.
 
 ----------------
 
-# Technologies utilisés
+# Starting the Game
 
-Le jeu a entièrement été développé sur [Eclipse](https://www.eclipse.org/) en `Java` JDK 14.0.2.
-Avec notamment [UMLet](https://www.umlet.com/) pour la création des diagramme UML.
+To start the game, you need to download the JAR file from GitHub.
+[Download Link of the .JAR](https://github.com/k-samir/ShingShang/blob/main/jar/ShingShang_SK.jar?raw=true)
+
+----------------
+
+## Running the Game
+
+On Windows/Linux or Mac: Open a command prompt/bash, navigate to the location of the .jar file, and type: java -jar ShingShangSK.jar 
+
+----------------
+
+# Technologies Used
+
+The game was fully developed using [Eclipse](https://www.eclipse.org/) with `Java` JDK 14.0.2.
+Avec also [UMLet](https://www.umlet.com/) for the creation of UML diagrams.
 
 
-### Auteur 
+### Author 
 * [Samir KAMAR](https://github.com/k-samir)
 
